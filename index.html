@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAS Foundation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      @font-face {
+        font-family: "ABCDiatype";
+        src: url("/Users/herdimasanggara/Documents/LAS Foundation/Website (Main)/Alternative/Fonts/ABCDiatype-Regular.otf")
+          format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "ABCDiatypeMono";
+        src: url("/Users/herdimasanggara/Documents/LAS Foundation/Website (Main)/Alternative/Fonts/ABCDiatypeMono-Regular.otf")
+          format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "ABCDiatype", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+  font-family: "ABCDiatypeMono", sans-serif;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.navbar.hidden {
+  display: none;
+}
+
+.navbar .logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.navbar .nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.navbar .nav-links a:hover {
+  background-color: orange;
+  color: black;
+}
+
+.navbar .search-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .search-container input {
+  padding: 5px;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+
+      .text {
+        padding: 20px;
+        font-size: 24px;
+        line-height: 1.5em;
+        overflow-y: scroll;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        width: 100vw;
+        min-height: 100vh;
+        gap: 0;
+        box-sizing: border-box;
+      }
+
+      .container div {
+        /* outline: 1px solid black; */
+        box-sizing: border-box;
+        min-width: 20px;
+        min-height: 20px;
+      }
+
+      .very-large {
+        grid-column: span 8;
+        grid-row: span 8;
+        width: 100vw; /* Ensure uniform width */
+        height: 100vh; /* Ensure uniform height */
+      }
+
+      .large {
+        grid-column: span 4;
+        grid-row: span 4;
+        width: 50vw; /* Ensure uniform width */
+        height: 50vh; /* Ensure uniform height */
+      }
+
+      .medium-long {
+        grid-column: span 4;
+        grid-row: span 2;
+        height: 25vh;
+      }
+
+      .medium {
+        grid-column: span 2;
+        grid-row: span 2;
+        height: 25vh;
+      }
+
+      .small-long {
+        grid-column: span 2;
+        grid-row: span 1;
+        height: 12.5vh;
+      }
+
+      .small {
+        grid-column: span 1;
+        grid-row: span 1;
+        height: 12.5vh;
+      }
+
+      .circle-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .circle-container label {
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+
+      .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      .scrollbar-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        height: 100%;
+        justify-content: space-between;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+
+      .scrollbar {
+        width: 100%;
+        height: 20px;
+        overflow-x: scroll;
+      }
+
+      .scrollbar-content {
+        width: 200%;
+        height: 100%;
+      }
+
+      .scrollbar-container-vertical {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
+        justify-content: space-between;
+        box-sizing: border-box;
+        overflow-x: auto;
+      }
+
+      .scrollbar-vertical {
+        width: 20px;
+        height: 100%;
+        overflow-y: scroll;
+      }
+
+      .scrollbar-content-vertical {
+        width: 100%;
+        height: 200%;
+      }
+
+      .rotating-scrollbar-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .rotating-scrollbar {
+        width: 200%;
+        height: 20px;
+        overflow-x: scroll;
+        position: absolute;
+        transform-origin: center center;
+        animation: rotate 5s linear infinite;
+      }
+
+      .rotating-scrollbar-30deg {
+        width: 200%;
+        height: 20px;
+        overflow-x: scroll;
+        position: absolute;
+        transform: rotate(30deg);
+        transform-origin: center center;
+        animation: rotate-30 5s linear infinite;
+      }
+
+      .rotating-scrollbar-60deg {
+        width: 200%;
+        height: 20px;
+        overflow-x: scroll;
+        position: absolute;
+        transform: rotate(60deg);
+        transform-origin: center center;
+        animation: rotate-60 5s linear infinite;
+      }
+
+      .rotating-scrollbar-90deg {
+        width: 200%;
+        height: 20px;
+        overflow-x: scroll;
+        position: absolute;
+        transform: rotate(90deg);
+        transform-origin: center center;
+        animation: rotate-90 5s linear infinite;
+      }
+
+      .rotating-scrollbar-120deg {
+        width: 200%;
+        height: 20px;
+        overflow-x: scroll;
+        position: absolute;
+        transform: rotate(120deg);
+        transform-origin: center center;
+        animation: rotate-120 5s linear infinite;
+      }
+
+      .rotating-scrollbar-150deg {
+        width: 200%;
+        height: 20px;
+        overflow-x: scroll;
+        position: absolute;
+        transform: rotate(150deg);
+        transform-origin: center center;
+        animation: rotate-150 5s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes rotate-30 {
+        from {
+          transform: rotate(30deg);
+        }
+        to {
+          transform: rotate(390deg);
+        }
+      }
+
+      @keyframes rotate-60 {
+        from {
+          transform: rotate(60deg);
+        }
+        to {
+          transform: rotate(420deg);
+        }
+      }
+
+      @keyframes rotate-90 {
+        from {
+          transform: rotate(90deg);
+        }
+        to {
+          transform: rotate(450deg);
+        }
+      }
+
+      @keyframes rotate-120 {
+        from {
+          transform: rotate(120deg);
+        }
+        to {
+          transform: rotate(480deg);
+        }
+      }
+
+      @keyframes rotate-150 {
+        from {
+          transform: rotate(150deg);
+        }
+        to {
+          transform: rotate(510deg);
+        }
+      }
+
+      .speedSlider-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 25px;
+        height: 100%;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .speedSlider {
+        width: 100%;
+      }
+
+      .canvas-container2,
+      .canvas-container {
+        position: relative;
+        /* width: 100%; */
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .canvas-container {
+        border-radius: 50px;
+        border: 25px solid transparent;
+      }
+
+      .layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        object-fit: contain; /* Ensures the image scales while maintaining aspect ratio */
+      }
+
+      #canvas,
+      #canvas2,
+      #canvas3 {
+        position: absolute;
+        /* top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+        min-height: 100vh;
+        max-width: none;
+        max-height: none;
+      }
+
+      .rotating-target {
+        z-index: 2;
+      }
+
+      .center-checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #randomizeFont {
+        background-color: DodgerBlue;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      #randomizeFont:hover {
+        background-color: RoyalBlue;
+      }
+
+      #resetFont {
+        background-color: DodgerBlue;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      #resetFont:hover {
+        background-color: RoyalBlue;
+      }
+
+      .center-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .replace-content {
+        position: relative;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      #animatedTextarea3,
+      #animatedTextarea4,
+      #animatedTextarea7,
+      #animatedTextarea8 {
+        transform: scaleX(-1);
+        direction: ltr;
+        unicode-bidi: bidi-override;
+      }
+
+      audio#expandableAudio {
+        width: 100px; /* Initial width */
+        transition: width 2s; /* Smooth transition effect */
+      }
+
+      .fixed-background {
+        position: fixed;
+        width: 100%;
+        height: 200%;
+        background: url("/Users/herdimasanggara/Documents/LAS Foundation/Website (Main)/Alternative/monster01.png")
+          no-repeat;
+        z-index: 1; /* Higher z-index */
+        pointer-events: none; /* Allow clicks and scrolls to pass through */
+      }
+
+      .fixed-background2 {
+        position: fixed;
+        width: 100%;
+        height: 200%;
+        background: url("/Users/herdimasanggara/Documents/LAS Foundation/Website (Main)/Alternative/monster02.png")
+          no-repeat;
+        z-index: 1; /* Higher z-index */
+        pointer-events: none; /* Allow clicks and scrolls to pass through */
+      }
+
+      #scribbleContainer {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Full height of the viewport */
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        filter: none; /* Initial filter */
+      }
+      #scribbleCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none; /* Default to allow scrolling */
+      }
+      #toggleButton,
+      #invertButton {
+        position: absolute;
+        top: 10px;
+        z-index: 20;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #toggleButton {
+        right: 10px;
+      }
+      #invertButton {
+        left: 10px;
+      }
+
+      #container14 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        min-height: 175vh;
+      }
+      #container14 > div {
+        display: flex;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        justify-content: space-evenly;
+      }
+      #container14 > div > div {
+        text-align: center;
+        /* border: 1px solid #000; Optional: To visualize the divs */
+        margin: 0;
+        box-sizing: border-box;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+      #container14 > .row6 > div {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
+      <div class="nav-links">
+        <a href="#">HOME</a>
+        <a href="#">PROGRAMME</a>
+        <a href="#">VISIT</a>
+        <a href="#">EXPLORE</a>
+        <a href="#">ABOUT</a>
+      </div>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+    </nav>
+
+    <!-- Container 01 -->
+
+    <div class="very-large canvas-container2" id="canvasContainer2">
+      <img class="layer" id="layer6" src="imageF.png" />
+      <canvas class="layer" id="canvas3"></canvas>
+    </div>
+
+    <!-- Container 02 -->
+
+    <div class="container">
+      <div class="large"></div>
+      <div class="large text">
+        In a shocking turn of events, the famed ecoterrorist Sinn Chatreya and
+        her militant group “The Ferals” launched a violent raid on Balumian
+        Corp.'s high-security laboratory, releasing a powerful interdimensional
+        entity. The attack has left the city and the world in chaos.
+      </div>
+      <div class="medium-long"></div>
+      <div class="medium-long text">
+        Chatreya, a notorious anarcho-primitivist, led the assault team
+        comprising professional mercenaries and her loyal followers. The group,
+        heavily armed with submachine guns, grenades, and high-tech equipment,
+        stormed the facility at dawn. The mercenaries, hired through the dark
+        web, and The Ferals, executed a meticulously planned operation,
+        infiltrating the building from multiple entry points, according to our
+        sources.
+      </div>
+      <div class="medium-long"></div>
+      <div class="medium-long text">
+        The primary target was the Nexial Gateway, a cutting-edge device,
+        developed by Balumian Corp, which has been in the eye of a media storm
+        in recent months, after its highly controversial development from
+        obscure hallucinogens like DMT, or N, N-Dimetiltriptamine by
+        neuroscientists who claimed to have found the instructions during
+        experiences of drug abuse. The 512-million-dollar device in question is
+        allegedly capable of interdimensional communication and travel, although
+        many experts deny these claims as preposterous and unscientific. The
+        attackers overpowered security, locking staff in an auditorium and
+        sweeping through the facility to secure the Gateway, located in the
+        heart of the building.
+      </div>
+    </div>
+
+    <!-- Container 03 -->
+
+    <div class="container">
+      <div class="large canvas-container">
+        <img class="layer" id="layer2" src="imageB.png" />
+        <canvas class="layer" id="canvas"></canvas>
+      </div>
+      <div class="large text">
+        Upon reaching the Gateway, Chatreya, with assistance from her followers,
+        activated the device. Injecting herself with a powerful dose of
+        dimethyltryptamine (DMT), she triggered the interdimensional process.
+        Witnesses reported a surreal phenomenon as the Gateway emitted radiant
+        energy, summoning an entity identified as PI RU RES.
+      </div>
+      <div class="medium-long"></div>
+      <div class="medium-long text">
+        The being, a colossal and abstract form of shifting neon lights and
+        strange, polygonal structures, began to materialize, breaking through
+        the laboratory's ceiling. Its presence caused widespread panic and left
+        onlookers in a state of euphoric paralysis.
+      </div>
+      <div class="medium-long"></div>
+      <div class="medium-long text">
+        The entity's emergence had immediate and profound effects on Jakarta.
+        The surreal apparition, visible across the city, disrupted electronics,
+        causing widespread malfunctions in communication networks and digital
+        systems. Social media platforms and other online services were inundated
+        with bizarre, corrupted data.
+      </div>
+    </div>
+
+    <!-- Container 04 -->
+
+    <div class="container">
+      <div class="medium-long text">
+        Sinn Chatreya, an eco-anarchist with a history of violent protests
+        against industrial and technological progress, aimed to unleash the
+        power of the Nexial Gateway. Her group has previously engaged in
+        high-profile acts of eco-terrorism across the globe, from halting
+        logging operations in the Amazon to disrupting mining activities in
+        Mongolia.
+      </div>
+      <div class="medium-long"></div>
+      <div class="medium-long text">
+        According to the Feral's blog and Twitter, Chatreya's actions were
+        driven by a radical ideology she termed “Presentism,” advocating for the
+        abolition of industrial progress in favor of a return to a more primal
+        state of existence. Her ultimate goal appears to be a societal
+        transformation through ecstatic experiences induced by the entity.
+        Thousands of followers around the globe consider that her actions are
+        well justified, after the failure of the UN and most governments to
+        contain the catastrophic consequences of climate change.
+      </div>
+      <div class="medium-long"></div>
+      <div class="large text">
+        Indonesian authorities, alongside international security forces, are
+        investigating the full extent of the incident and working to neutralize
+        the entity. Experts warn that the implications of this event could
+        reshape global approaches to both security and technological
+        development. As the world watches, the release of PI RU RES in Jakarta
+        stands as a stark reminder of the potential dangers posed by unregulated
+        advancements in interdimensional research. The incident underscores the
+        urgent need for international cooperation in managing emerging
+        technologies that can transcend conventional understanding and control.
+      </div>
+      <div class="large canvas-container">
+        <img class="layer" id="layer4" src="imageD.png" />
+        <canvas class="layer" id="canvas2"></canvas>
+      </div>
+    </div>
+
+    <!-- Container 05 -->
+
+    <div class="container">
+      <div class="medium-long rotating-target"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium rotating-target"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium">
+        <div class="speedSlider-container">
+          <input type="range" min="1" max="10" value="1" class="speedSlider" />
+          <input type="range" min="1" max="10" value="2" class="speedSlider" />
+          <input type="range" min="1" max="10" value="3" class="speedSlider" />
+          <input type="range" min="1" max="10" value="4" class="speedSlider" />
+          <input type="range" min="1" max="10" value="5" class="speedSlider" />
+          <input type="range" min="1" max="10" value="6" class="speedSlider" />
+          <input type="range" min="1" max="10" value="7" class="speedSlider" />
+          <input type="range" min="1" max="10" value="8" class="speedSlider" />
+          <input type="range" min="1" max="10" value="9" class="speedSlider" />
+          <input type="range" min="1" max="10" value="10" class="speedSlider" />
+        </div>
+      </div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+    </div>
+
+    <!-- Container 06 -->
+
+    <div class="container">
+      <div class="medium text">
+        The eidolon was colossal. A kind of rhizomatic tubular figure, adorned
+        with spheres like nervous knots that branched vertically, interwoven,
+        braided, stretching on a dozen long legs of intense fuchsia, lemon
+        green, aquamarine blue, all spiraled, twisted, difficult to understand,
+        rising immensely in pink spikes that topped it at a height of three
+        hundred meters, intersected between sheets of almost biological, almost
+        plastic kneecaps.
+      </div>
+      <div class="medium text">
+        The monster towered over the posthuman jungle landscape like an ancient
+        deity or a sculpture of Yugoslav art. It didn't move, at least not
+        perceptibly, but its mere presence produced, if not fear, the disturbing
+        sensation that ran down my back and gave me goosebumps, just like
+        vertigo or seeing creepy insects moving.
+      </div>
+      <div class="medium text">
+        What if we didn't attack? Could we assume that it wasn't going to attack
+        us either? Why not leave it alone? Why not allow it to continue existing
+        so we could turn our faces, stop salivating, avoid vomiting, and contain
+        the dizziness of its maddening radiation? Like everything else that
+        inhabited the presentism and the dreamsphere, it possibly did not
+        perceive us in a linearity of time: “we were not about to reach it, we
+        hadn't arrived, we had always been there”.
+      </div>
+      <div class="medium text">
+        INTEL: Did it have ranged weapons, or did it fight melee? Was it capable
+        of running or flying? Could it toss lightning bolts or manipulate
+        electric fields? They didn't give us any information about it. Only that
+        it had appeared in section 4.35, sector 2b, on the outskirts of Jakarta,
+        “capital” of the Ferals, if that ruin could be called a city, that is.
+        Our mission: to recover the Nexial Gate. Nothing less.
+      </div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium text">Do not think. Take action.</div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium fixed-background2"></div>
+    </div>
+
+    <!-- Container 07 -->
+
+    <div class="container">
+      <div class="large text">
+        PIZARRO and GAMA were walking with long strides on the right, and I was
+        on the left. At first in slow mode, saving energy. We could see
+        ourselves in the distance, enormous bluish humanoids, clones of ancient
+        celestials encased in neodymium and tungsten armor taking saurian steps
+        that made the earth tremble. 45 percent timing. Raising energy levels by
+        five powers in three minutes. Activate battle shields on sides. Attack
+        mode in five, four, three, two, one.
+      </div>
+      <div class="large text">
+        Lieutenant (from the space station): Any signs of movement?<br /><br />
+        Captain Benítez: Negative, sir. It's eerily still, but its presence...
+        It's unsettling. <br /><br />
+        Sánchez: Luna. Think it'll attack if we make a move? <br /><br />
+        Kai Luna (that's me): Hard to tell. Maybe best to observe from a
+        distance. The radiation's messing with my head, makes me feel like I'm
+        something else. Or someone else. <br /><br />
+        Lieutenant (from the orbiting base): Extraction team's down. Leuktra
+        division's moving in from the north. Your mission: recover the Nexial
+        Gate. No compromises.<br /><br />
+        Captain Benítez: Roger that. PIZARRO, MAGELLAN let's advance cautiously.
+        Sync at 45 percent. Energy levels up in three. Activate battle shields
+        on the sides. Attack mode in five, four, three, two, one. <br /><br />
+        Kai Luna: Locked and loaded, sir.<br /><br />
+        Sánchez: Ready to roll, sir.<br /><br />
+        Captain Benítez: Lieutenant, we're poised. Permission to engage.<br /><br />
+        Lieutenant (from the orbiting base): Hold your horses, Benítez. I see
+        the eagerness. Take a breath. Precision, that's what we need. You're
+        handling machinery worth more than some nations' GDPs. Let's not get
+        reckless.<br /><br />
+        Kai Luna: Things are getting weird. Feels like we're tripping. I suppose
+        it's just the dreamsphere, but I thought our caskets would protect us
+        from it.
+      </div>
+      <div class="large scrollbar-target-vertical"></div>
+      <div class="large"></div>
+    </div>
+
+    <!-- Container 08 -->
+
+    <div class="container">
+      <div class="large text">
+        It was enough to notice that the place we were walking through was not a
+        normal jungle. This had been reported on numerous occasions: in the
+        vicinity of an eidolon, anomalous effects could be experienced, a mobile
+        interzone extended for several kilometers: folds of chaotically
+        contained dimensions, meaningless vibrations like those of a fleeting
+        trip with dimethyltryptamine towards the kingdom of the mechanical
+        elves, buzzing in the ear as if we were about to confront our
+        döppelganger in the back of the mind.
+      </div>
+      <div class="medium-long text">
+        Sánchez: The scenery though. What a blast, huh?<br /><br />
+        Kai Luna: Breathtaking.
+      </div>
+      <div class="medium-long"></div>
+      <div class="large text">
+        And I took a deep breath of the antidote gas so that presentism wouldn't
+        absorb me. The kilometers that surrounded me of mountains covered with
+        lush tropical jungle, omnipresent, endless and so mysterious, were
+        giving me a kind of paralysis. I don't know how long I was in complete
+        silence, placing my eyes on one detail, then another, on a flower, on a
+        root, on the texture of a tree, insects that fluttered here and there,
+        greens, yellows, reds so intense. At least a couple of tears escaped my
+        eyes, and I breathed deeply, tasting the thick humidity of the air,
+        waiting for it to heal me, to transform me.
+      </div>
+      <div class="medium-long text">
+        Sánchez: Breathtaking is an understatement. It's like our parents'
+        stories come to life.<br /><br />
+        Kai Luna: I didn't imagine the colors were so vivid. Your folks would've
+        loved this. Ugh and gravity is killing me.<br /><br />
+        Sánchez: Well, this is what our parents saw every day, huh? Your
+        parents, Kai. They're with us. Think about it. What a privilege.<br /><br />
+        Lieutenant: Proceed, Captain.<br /><br />
+        Captain Benítez: MAGELLAN, GAMA. Open fire!
+      </div>
+      <div class="medium-long scrollbar-target-vertical"></div>
+    </div>
+
+    <!-- Container 09 -->
+
+    <div class="container">
+      <div class="medium-long"></div>
+      <div class="medium-long rotating-target"></div>
+      <div class="medium">
+        <div class="circle-container">
+          <label><input type="radio" name="speed" value="1" /></label>
+          <label><input type="radio" name="speed" value="2" /></label>
+          <label><input type="radio" name="speed" value="3" /></label>
+          <label><input type="radio" name="speed" value="4" /></label>
+          <label><input type="radio" name="speed" value="5" /></label>
+          <label><input type="radio" name="speed" value="6" /></label>
+          <label><input type="radio" name="speed" value="7" /></label>
+          <label><input type="radio" name="speed" value="8" /></label>
+          <label><input type="radio" name="speed" value="9" /></label>
+          <label><input type="radio" name="speed" value="10" /></label>
+        </div>
+      </div>
+      <div class="medium"></div>
+      <div class="medium-long text">
+        The three of us started shooting at the colossus. It was precision fire
+        with point-fifty penetration ammo. A single bullet would have split the
+        trunk of a large tree. Wisps of blue smoke formed around the bug, which
+        began to move unusually, quite quickly, like a gigantic shapeless
+        lizard, disarticulating and rearming itself to avoid the projectiles,
+        twisting in a second, spinning, opening. Nothing human or biological on
+        the entire Earth moves that way.<br /><br />
+        Sánchez: Watch it, friendly fire! Friendly fire!<br /><br />
+        The colossus danced, redirecting the bullets toward us at high speed so
+        that we were forced to move quickly to avoid shooting at each other.
+        Other eidolons had done the same. They had learned and each one was
+        smarter than the last.<br /><br />
+        Captain Benítez: The motherfucker's deflecting shots back at us.<br /><br />
+        Lieutenant (from orbiting base): I detect some heat signatures from the
+        target. Try a guided missile.<br /><br />
+        Captain Benítez: Roger. Fire!
+      </div>
+      <div class="large text">
+        The kaiju detected the missile, it was as if it turned to see it in slow
+        motion, turning its internal eyes to watch it pass, as if in a second it
+        had deciphered the operation of the infrared guidance. Everyone saw how
+        from one moment to the next it stopped emitting heat. The missile
+        brushed past the monster and changed direction for a few degrees looking
+        for the nearest heat source and hitting Pizarro. We all saw the
+        explosion.<br /><br />
+        Kai Luna: You bitch! Sánchez, are you okay?<br /><br />
+        Captain Benítez: Sánchez, do you copy? <br /><br />
+        Sánchez: Lost an arm, sir. Damn.<br /><br />
+        Lieutenant (from orbiting base): No hits, no damage? What is this shitty
+        operation, Captain?<br /><br />
+        Kai Luna: We don't know the weaknesses, sir. <br /><br />
+        I defended the column, but they would easily reprimand me for
+        mediocrity.<br /><br />
+        Lieutenant: Plasma beam! Luna, fire at will!<br /><br />
+        Kai Luna: Aye sir. Core diversion in progress, cannon ready. Firing now.
+      </div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium rotating-target"></div>
+      <div class="medium"></div>
+    </div>
+
+    <!-- Container 10 -->
+
+    <div class="container">
+      <div class="medium-long"></div>
+      <div class="medium-long"></div>
+      <div class="medium"></div>
+      <div class="medium-long text">
+        I fired a burst of yellow light, streaking the Javanese blue sky. The
+        bug changed color, caught the light, and turned it into a ball of
+        energy. It seemed to hold it for a while inside its psychedelic
+        structure and then, twisting the light like a misshapen lens, it
+        channeled it and shot towards GAMA. Captain Benítez's enormous robot
+        received the impact squarely in the chest. The beam tore through it,
+        melting its armor, ripping open the cloned celestial's chest, shattering
+        most of the chassis, and expelling its bloody alien viscera. There was
+        no time to eject, there was no time for anything. Captain Benítez died
+        in an instant. He probably didn't even realize what happened when he
+        found himself in the afterlife, without warning, without saying goodbye
+        to his loved ones, and without any decorations.<br /><br />
+        The giant fell backward with smoke, crashing into a section of the
+        forest, and remained there in peace.<br /><br />
+        Matías in the PIZARRO unit and I in the MAGALLANES unit, remained
+        silent, our robots stood completely still.
+      </div>
+      <div class="medium"></div>
+      <div class="medium-long text">
+        Sánchez: Man down. Man down.<br /><br />
+        Kai Luna: Captain! Captain! <br /><br />
+        Lieutenant (from orbiting base): He's gone. Readings are gone.
+        <br /><br />
+        Sánchez: He probably died without realizing... <br /><br />
+        Sánchez: Well. According to the regular procedure, you're in charge now.
+        Luna's the mission captain.<br /><br />
+        Kai Luna: Shit. Shit. Shit. Ok, let's calm the shit out. Ranged attacks
+        aren't cutting it. Retreat, Lieutenant?<br /><br />
+        Sánchez: Hold on. It hasn't attacked us directly yet. No ranged offense.
+        I'm going melee.<br /><br />
+        Kai Luna: Sánchez! Benítez is dead! Why play the hero? Are you trying to
+        prove something?<br /><br />
+        Lieutenant (from orbiting base): Maybe it could work. PIZARRO unit,
+        hand-to-hand combat instance authorized.
+      </div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium center-buttons">
+        <button id="randomizeFont" style="width: 100%">
+          <i class="fa fa-download"></i> DOWNLOAD
+        </button>
+        <button id="resetFont" style="width: 100%">
+          <i class="fa fa-download"></i> DOWNLOAD
+        </button>
+      </div>
+      <div class="medium"></div>
+    </div>
+
+    <!-- Container 11 -->
+
+    <div class="container">
+      <div class="medium"></div>
+      <div class="medium text">The PIZARRO unsheathed two enormous swords.</div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="large text">
+        Sánchez: Core's energy to the limbs. Did I ever tell you about my
+        thirty-meter katanas, Luna? I mean, Captain. Ehem. Ready to engage!
+        <br /><br />
+        Lieutenant (from orbiting base): The team here is reorienting
+        operational armor and activating auxiliary arms. You would've had four
+        if you had been more careful. You've got thirty seconds.<br /><br />
+        Kai Luna: Do what you have to, then get out! <br /><br />
+        Then I changed my instance to fight in melee, dropping the plasma
+        cannon, the submachine gun, and the missile pods, just in case I also
+        needed to intervene.<br /><br />
+        The PIZARRO unit, with its three active arms, dashed towards the monster
+        with great speed. It swung its swords like lightning, spinning,
+        attacking, cutting, and thrusting. The creature dodged with great speed,
+        bending most fantastically, displaying iridescent colors, showing
+        electric blue membranes full of bright eggs, and reconfiguring its shape
+        behind Sánchez's back. He was tired and losing focus. <br /><br />
+        Kai Luna: Combat speed activated!<br /><br />
+        I went after him, and drew my fire staff. A rubidium weapon capable of
+        causing enormous heat damage to any structure. As I got closer I was
+        able to detail that in the thirty seconds of combat he had already
+        spent, Sánchez had only been cutting through the air. In the
+        thirty-fifth second, the target produced a flash, leaning against the
+        ground, it grew one of its appendages to an impossible width, hitting
+        Matías in the side with such power that the robot was shot into the air.
+        He suffered considerable damage, but as he flew, the artificial
+        intelligence calculated the movements of a backflip and it landed safely
+        on his feet.
+      </div>
+      <div class="large text">
+        Kai Luna: You are leaving now! <br /><br />
+        I yelled at Matías.<br /><br />
+        Lieutenant (from orbiting base): Yeah. Engage. Take him out of there.
+        Try to spare the machine and pull back. <br /><br />
+        It was pure luck that I managed to break into the creature's defenses
+        and hit it with the fire staff. The bug vibrated like a singing bowl,
+        opening like a flower, spinning and preparing to fight me. It jumped
+        like a cat while trying to hit me with his iridescent spikes. I dodged,
+        and parried, then saw on the mental screen that the PIZARRO unit adopted
+        its most powerful pose. It doubled, changing modules, losing weight,
+        discarding two or three shells, and becoming a quadruped. A slender,
+        black creature with golden claws and hundreds of horns like the branches
+        of a tree. The true form of a fluxus.<br /><br />
+        Lieutenant (from orbiting base): What are you doing, Sánchez?<br /><br />
+        Sánchez: Saving my friend. And your precious mech. Changing modules one
+        to five, discarding exterior shells. <br /><br />
+        Lieutenant (from orbiting base): That's not even tested in combat.
+        <br /><br />
+        Sánchez: Doesn't mean it won't work. This is the true form of a fluxus!
+        The black beast of the unconscious! Payback time, baby.<br /><br />
+        The PIZARRO unit charged at the kaiju, hitting it with its antlers. As
+        he was thrown into the air, I aimed and turbocharged my right arm,
+        throwing the staff at it, which chased it along the trajectory and
+        buried itself in the heart of the beast. The eidolon fell into the
+        jungle, sinking between the trees and taking fire damage. <br /><br />
+        We both stood silent, staring at the jungle.<br /><br />
+      </div>
+    </div>
+
+    <!-- Container 12 -->
+
+    <div class="container">
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="medium"></div>
+      <div class="small-long"></div>
+      <div class="small-long center-checkbox">
+        <input type="checkbox" id="invertCheckbox" />
+      </div>
+      <div class="small-long fixed-background"></div>
+      <div class="small-long"></div>
+      <div class="large text">
+        Kai Luna: Did we kill it?<br /><br />
+        Lieutenant (from satellite base): Do we have a positive?<br /><br />
+        There was no answer.<br /><br />
+        Sánchez: Grab my sword. Give it the final blow and we'll dance reggaeton
+        at Rubi's tonight. PapiAbalonenLaCalle, You know I love you, daddy. Come
+        on, daddy, come on, daddy, come on.<br /><br />
+        I activated the retribution mode, found one of Matías's swords in the
+        distance and made it fly into my hand like Mjollnir. I took a couple of
+        strides with the little energy I had left and found the bug wriggling
+        near a river basin, pulsating and throbbing like a mass of fungi and
+        vapid organs. I raised the robot's arm and attacked. Halfway between the
+        sword and the kaiju, the monster produced a bush of very long aquamarine
+        blue spears, which pierced the core of the MAGELLAN unit. My mecha. The
+        lights went out in the cabin. Sparks flew, and controls were
+        inoperative. There was an alert message in the telepathic system and I
+        saw on the mental display how the PIZARRO unit was impaled just like
+        mine.
+      </div>
+      <div class="large text">
+        MAGELLAN AI: ALERT. ALERT. MAIN ENGINE COMPROMISED. IRREPARABLE DAMAGE.
+        IRREPARABLE DAMAGE.<br /><br />
+        Kai Luna: Fuck! The eject mechanism is jammed. I'm falling. Magellan is
+        falling.<br /><br />
+        I felt the robot's chaotic movement, losing stability. The MAGELLAN unit
+        collapsed, crushing huge trees in its path. I held on to the controls.
+        Then my head hit the edge of the command chair and I lost
+        consciousness.<br /><br />
+        Lieutenant (from orbiting base): They've been hit. They've been hit! Are
+        you there? Do you copy? Are you still operational? Luna? Sánchez? Do you
+        copy? I repeat, do you copy?
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea1"
+          class="animatedTextarea"
+          rows="10"
+          cols="1"
+        >
+    ⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea2"
+          class="animatedTextarea"
+          rows="10"
+          cols="1"
+        >
+    ⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea3"
+          class="animatedTextarea"
+          rows="10"
+          cols="1"
+        >
+    ⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea4"
+          class="animatedTextarea"
+          rows="10"
+          cols="1"
+        >
+    ⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+    </div>
+
+    <!-- Container 13 -->
+
+    <div class="container">
+      <div class="very-large">
+        <div id="scribbleContainer">
+          <iframe
+            src="https://docs.google.com/document/d/1jrFmtKk8IuHTJSNMWAMp3NSKG1kjGIF0xeepJS9v24w/preview?"
+            width="100%"
+            height="100%"
+            loading="lazy"
+          ></iframe>
+          <canvas id="scribbleCanvas"></canvas>
+          <button id="toggleButton">ENABLE</button>
+          <button id="invertButton">REVEAL</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container 14 -->
+
+    <div class="container" id="container14">
+      <div class="row1">
+        <div class="small">
+          Sinn Chatreya ate her last burger in a van at the entrance to the
+          Balumian Corp. laboratory while she checked the time on her phone,
+          over and over again. She was surrounded by hooded men and women, armed
+          with assault submachine guns, grenades, signal disruptors, climbing
+          equipment, knives, and enough ammunition to kill the entire building's
+          staff. Half belonged to a team of professional mercenaries hired in
+          the Deep Web. Immortals. The other half were Chatreya's loyal
+          followers: The Ferals.
+        </div>
+        <div class="small">
+          With her they had participated in a fairly impressive number of
+          sit-ins, marches, and protests since she was a fourteen-year-old girl:
+          they had faced riot police from several countries (some had lost their
+          teeth in those epic confrontations), in perfectly strategic missions
+          trying to stop the progress of logging in the Brazilian Amazon,
+          seeking to prevent the signing of a law in Mongolia that allowed open
+          pit mining, promoting the attempt to close a refinery in Venezuela,
+          attacking seal hunters and plastic factories in China. They were a
+          formidable group of anarcho-primitivists punk rockers, full with long
+          hair, second-hand clothes, pierced genitals and nipples, all united in
+          their increasingly firm belief that the only way to stop their mortal
+          enemy (pollution, or capitalism, sometimes even technological
+          progress), was through violence. Or at least, “certain types of
+          violence.”
+        </div>
+        <div class="small">
+          Chatreya finished the last bite of the burger. She closed her eyes to
+          taste the fat, and the sauces and sent a message to Juno Luna.
+        </div>
+        <div class="small">
+          SINN: You have five minutes to get out of there.<br /><br />
+          Juno saw the message, and two checks came out, but he didn't respond
+          to anything.
+        </div>
+        <div class="small">
+          —He is a coward —said Juana, a six-foot-tall woman with a pink
+          balaclava and AKIRA and Green Peace patches on her blue jean vest.<br /><br />
+          —Maybe he'll participate when the time comes, —Ratz added. Ratz was an
+          18-year-old boy whose face looked like that of a little rat, and he
+          too had opted for the hamburger ritual. Considering animal
+          slaughtering was about to be impossible.
+        </div>
+        <div class="small">
+          The operation was relatively clean. One group entered through the
+          roof, another through the parking lot, and another through the front
+          door. Doors were closed, cleaning staff and a few scientists were
+          threatened, all of whom ended up locked in an auditorium under the
+          angry yelling of two armed mercenaries. The groups swept through
+          rooms, storerooms, conference halls, and individual offices until they
+          found the security room.
+        </div>
+        <div class="small">
+          Despite the planning, the hacking of the surveillance circuit, and
+          other details, the police had been informed and were already on their
+          way to the scene. They tied up the security officers with ropes and
+          gag balls and left them naked in the bathroom. The vault where the
+          Nexial Gateway was located was in the heart of the building in a large
+          chamber with a very high ceiling, surrounded by instruments that
+          monitored its thermal variations, radioactivity, etc.
+        </div>
+        <div class="small">
+          The door burst open, and mercenaries and anarcho-primitivists entered
+          pointing their assault rifles, placing themselves in positions that
+          had been discussed and planned for months.
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="small">
+          Chatreya walked in confidently, still picking food out of her teeth
+          with her tongue. She located Juno Luna, with his lab coat and his
+          small team of scientists on the second floor. Chatreya looked in all
+          directions, familiarizing herself with everything: the cooling tubes,
+          the ultra-fast cameras, microphones, electromagnetism detectors, the
+          stairs and emergency exits. With everything under control, she finally
+          approached the Gateway.
+        </div>
+        <div class="small">
+          It was surprisingly small compared to what was seen on the
+          international news. Not only images of the machine in operation
+          producing the strange blue flower of energy and a lot of circles that
+          were drawn in the sky, but of the many guinea pigs, apes, cats, rats,
+          who were administered DMT while they were inside the floating rings.
+          There were also images of the humans who shone, became diffuse, seemed
+          to disappear momentarily before reappearing, washed in sweat,
+          shivering with fever and completely crazy, squeezing hyper-objects of
+          delicate and strange nature in their hands with such force that their
+          palms and nails were cut open and bleeding. What they had glimpsed had
+          left them mentally handicapped, ready to be interned in a mental
+          hospital. Or at least, that's how it was in the first months before
+          they learned how to calibrate the “world selector”.
+        </div>
+        <div class="small">
+          —It looks like a hula hoop, a hundred and fifty million dollars hula
+          hoop —said Chatreya without giving it much importance. Then she looked
+          at Juno —if you stayed it's because you're part of the team.
+        </div>
+        <div class="small">
+          Juno nodded, but that didn't make him happy. He was especially nervous
+          about the mercenaries' weapons. After sending that much intel for
+          years, he deserved to see the thing first-hand.<br /><br />
+          Chatreya looked at the Gateway again and approached it with greater
+          interest.
+        </div>
+        <div class="small">
+          —It's incredible what they've gotten out of it. Did you see that they
+          opened an entire university degree just to study objects? —uttered
+          Juana.<br /><br />
+          —We keep a few of them here —said Juno, as if sparing some time —we
+          have the gold octahedron that is factored by 45 every 67 seconds in a
+          tank, and we have the ogdoadian filigree that makes everyone vomit
+          within a square kilometer, we have it in a lead box. If you are
+          interested, I can give you a tour...
+        </div>
+        <div class="small">
+          —Shht. No time for any of that. The police are on their way.<br /><br />
+          She took off her clothes in front of everyone. She walked shamelessly
+          naked towards the plexiglass doors that separated the living space
+          from the security area. Juana accompanied her, taking out a
+          ready-to-use dose of dimethyltryptamine from her yellow suitcase made
+          of recycled tires. Once inside, Chatreya touched the rings, noting
+          that although they floated, they seemed firmly locked in the air.
+          Magic from the advanced room-temperature superconductors. She bent
+          down and entered between both rings. Juana took off her balaclava,
+          kissed Chatreya in her mouth, and injected her left arm with a large
+          dose of the active component in ayahuasca, an endogenous drug of the
+          pituitary gland, found in almost every animal's metabolism.
+        </div>
+        <div class="small">
+          —Health and good vision! —She managed to say before the
+          interdimensional phenomenon began.
+        </div>
+        <div class="small">
+          The discs activated and began to float, lifting Sinn into the air
+          before the cameras and the astonished gaze of her fellow activists and
+          mercenaries. In the space between Chatreya and the floating disks, a
+          source of energy began to appear. Red lines, branches of cosmic
+          biotechnology grew rapidly, and a beautiful blood flower opened, with
+          fluctuating and strangely polygonal cells of light covering the entire
+          hall. From the center of the upper ring, an iridescent and shiny
+          membrane then unfolded. Inside, a living being made of orange balloons
+          became visible. A fragmentary god, rejoining, rearming, and disarming,
+          playing hide and seek with all human civilization in our minds. The
+          attendees heard their telepathic voice; terrified, they then knew they
+          had made contact on a planetary level with PI RU RES, sentinel and
+          observer of the stellar quadrant of Valmuria, the colossus of even
+          numbers, our lady of skins. We have already seen it; PI RU RES has
+          appeared in our dreams playing god of death and singing its song.
+        </div>
+      </div>
+
+      <div class="row3">
+        <div class="small">
+          As the enormous, absolutely monumental, abstract, branched, and
+          segmented legs of the shifting eidolon began to emerge from the flower
+          of light, rising without stopping and beginning to break the ceiling
+          that soon started to collapse, it is worth reviewing the training that
+          Chatreya had gone through. Just as Juno Luna and her companions had
+          spent months deciphering the strange writing, the walls of
+          pseudo-computational codes that can be seen in the DMT “trip” that
+          eventually gave them the instructions to build the Nexial Gateway,
+          Sinn Chatreya was attempting to have functional conversations with the
+          gods, elves, symbiotes, dimethyltryptamine aliens. As any psychonaut
+          knows, mechanical elves communicate telepathically, and they like to
+          talk, sometimes a phrase (which will stick in the psychonaut's mind
+          for the rest of their life) sometimes entire conversations, not very
+          clear ones, though.
+        </div>
+        <div class="small">
+          They are, however, not so good at listening, or, for that matter,
+          having a functional conversation. When being asked anything, they
+          normally answer something else completely, a 3-meter cactus man might
+          talk about universal love, a lizard made of Legos might explain
+          something about transcendental happiness, a fox woman made of orange
+          bubbles might try to teach a traveler to dance. Chatreya tried to
+          explain to the entities that we were destroying our planet and needed
+          help. But for months the creatures strayed from the topic and ended up
+          speaking to her in rhymes: In cosmos vast, my essence finds its home/
+          Where stars in dance, their light forever gleam/ In unity, I merge, no
+          longer roam/ With universe, I blend, as in a dream.
+        </div>
+        <div class="small">
+          By the way, PI RU RES, had grown so much at that point that it was
+          possible to see him, or her, or whatever their pronouns are, from
+          anywhere in Jakarta. They glowed a neon red/magenta. They raised their
+          legs, branches, things, they had no human or animal form. They were a
+          jumble of nerves, spheres, disconnected parts of an alien spine, and
+          three yellow spheres like the yolks of giant eggs.
+        </div>
+        <div class="small">
+          In the months of training, Chatreya learned the hard way, by
+          interviewing insectoids, beings made of sticks, and enormous
+          radioactive fish, that eidolon intelligence was more complicated, or
+          more mysterious, than human intelligence. When she told the fluoride
+          ghosts the details of what capitalism meant, submission to the laws of
+          the market, and people's inability to break out of the cycle of buying
+          things that depended on the destruction of everything, the monsters
+          seemed more interested in showing her the usual hyper-toys, talking to
+          her about enjoying the present and dancing forever. All of which would
+          be wonderful.
+        </div>
+        <div class="small">
+          I wish people could apply those teachings, Chatreya thought, because
+          people came out of the trip having to go back to work in a system that
+          depended on the destruction of everything, and the fantastic visions
+          ended in just a curious story, years in the future, when the “once
+          traveler” commented at a party with friends about the beings he had
+          encountered. From this, and other totalizing experiences, she ended up
+          feeding her new political current. Presentism.
+        </div>
+        <div class="small">
+          By the way, the monstrous being that had emerged from Balumian's
+          building. Corp, was already rising in all its magnificence, and
+          everyone in Jakarta was looking at it, if not out the window,
+          everywhere on the news, and now walking at a slow pace through the
+          Sudirman CBD, followed by a helicopter and a multitude of drones
+          towards the north, as it would just pass by the national monument and
+          the Istiqlal mosque. As if they were a tourist who is going to take a
+          picture. And in its wake, heavily, like an invisible jelly that
+          expands street by street, it left the air rarified, undulating, and
+          the people stunned.
+        </div>
+        <div class="small">
+          The team of mercenaries had no idea that they had been hired to end
+          human civilization as we knew it. They dropped their weapons, they
+          dropped themselves, they began to feel a violent cooking of hormones
+          and neurotransmitters that led to an ecstatic paralysis. Presentism,
+          the annals of history would say, was in its theory, ecstasy as a
+          political alternative to a positivist developmentalism of market
+          expansion. Instead of slaving away all of humanity to create a future
+          that looked like Shanghai or Shenzhen, presentism attempted to show
+          that that future already existed within us, and it is called ecstasy.
+          That was what PIR produced, and the legion of monumental neon gods
+          that would enter the earth, landing with the softness of a feather to
+          see with a smile how the oil pipelines stopped working, the plastic
+          stopped being manufactured, the production of iPhones stopped dead.
+        </div>
+        <div class="small">
+          The same with the CO2, the cars stopped moving, the planes stopped
+          flying, the Chinese factories stopped working, and everyone remained
+          like idiots, smiling with pleasure. The contamination infected the
+          mind, but, curiously, it seemed to spread even faster through
+          electronic systems. Social networks, computers, cell phones, all went
+          into ecstasy in unison. Microsoft Word vibrated in the present,
+          Microsoft Edge manifested itself in meaningless jumps, Google Chrome
+          crashed, restarted showing confused data, mixing up web sites with
+          each other, Wikipedia with Xvideos.com, Zlibrary joined the Kuwait
+          government page, ad infinitum, Facebook reused posts and profiles to
+          create large musical mashups displaying fast deformed photographs and
+          texts reorganized to look like pop songs. The machines had reached a
+          spiritual dimension, reaching ecstasy, stasis, asis, sis. And although
+          the physical effects were only initially felt on the island of Java,
+          in just under a second they were felt in the rest of the planet, if
+          you were a computer, that is.
+        </div>
+      </div>
+
+      <div class="row4">
+        <div class="small">
+          Sinn Chatreya descended from between the hoops of the Nexial Gate.
+          Scientists, police, mercenaries, terrorists and anarcho-primitivists
+          were all, not only perfectly fascinated by the visual effects that
+          surrounded them, obsessively inspecting the things around them, others
+          writhing on the ground from the waves of psychosexual pleasure, the
+          men ejaculating in their pants. Not only that; they also suddenly
+          found themselves hooked to an alien technology, famous across worlds,
+          that connected gastric systems through the air. A kind of food WiFi.
+        </div>
+        <div class="small">
+          Sinn approached Juno, trying to control the laughter that possessed
+          her, and told him that she had ordered a large amount of the food
+          dendrites from Plocomia 11, a faraway planet in hyperspace in which
+          food, energy, and entropy are in a tightly controlled balance. In
+          effect, the energy particles moved between trees, animals, and things.
+          Labor as a means to accomplish nourishment is a thing of the past.
+          Work itself has been abolished. Juno Luna laughed so hard he peed on
+          his pants and then understood quite clearly that time was not a line
+          in a singular direction from past to future. It was quite clear now
+          that time was a spiral, spiraling into the present, of this, this
+          thing here, this word you're reading here. And this dot.
+        </div>
+        <div class="small">
+          Hey Juno.<br /><br />
+          Actually, yes. Presentism is reversing that way of understanding time
+          and concentrating on the present, in which the present itself is an
+          endless abyss, and staying in that abyss to understand our reality. It
+          is ecstasy and psychedelic trance as a political alternative.<br /><br />
+          And what you asked me. Yes. I have been talking to the Eidolons,
+          although the conversations don't make much sense if we translate them
+          into our language. I know that you understand, I know that you know
+          that what we live in is not sustainable and that no one is doing
+          anything to stop it. You know it is urgent to stop it. We say it in
+          the United Nations, we repeat it, we have been repeating it for
+          decades, but no one is capable of changing it, because it's not
+          profitable.<br /><br />
+          And worst of all, they believe that we are terrorists. Tell me, who is
+          the terrorist? Us or them, who destroy everything!<br /><br />
+          Tell me if I can trust you.<br /><br />
+          CH
+        </div>
+        <div class="small">
+          Dear Juno,<br /><br />
+          I don't like what you're telling me. Ferals are terrorists. I'm not
+          going to tell anyone, but I didn't work in the Nexial Gate to bring
+          some unfathomable entity to bring chaos to the world. I did it to
+          learn. To know and understand our universe. Plus, you're a little
+          obsessed with environmentalism. Don't you think that in a few years,
+          someone will invent something to replace plastic? Or that electric
+          cars are going to replace gasoline cars very soon?<br /><br />
+          Just chill a little bit. <br /><br />
+          Dr Yao Longjie<br /><br />
+          PhD in Neurobiology<br /><br />
+          Head of AJKJ Nexial Gate Committee
+        </div>
+        <div class="small">
+          Dear Dr.<br /><br />
+          It has something to do with the tribe I'm related to in Colombia I
+          told you about. They see time, not as a straight arrow that goes from
+          past to future, but as a spiral, a spiral of the present continuous,
+          in which everything is happening right now. It starkly contrasts with
+          modernism and the ideology of progress. It's not that I don't agree
+          with science, it's more like, the way “progress” and “development”
+          work in our current society is all based on exponential economic
+          growth, regardless of our finite resources. The future is more
+          important than anything else, modernity is a project to never be
+          completed, but the way it works now, it requires so much destruction
+          to keep it going, that it doesn't make any sense to continue. The
+          present is already rich enough, but we can't see it because we are
+          already junkies to the system of future satisfaction and commodities.
+          The gods of DMT have finally given us this solution, we met in this
+          intergalactic session with representatives of a bunch of intelligent
+          worlds, and they want to give us this gift. That's it. That's what
+          presentism is.<br /><br />
+          Get Outlook for iOS
+        </div>
+        <div class="small">
+          I'm very disappointed. You can't even understand how I felt about you
+          and Nafisa. (Who, btw, is about to give birth). You don't even
+          understand the scale of what you are unleashing. Of course, we all
+          know that the system as it exists now has problems, but my life is
+          actually good, many people I know and love are also having good lives
+          that are worthy and interesting. It seems a disaster to me that you
+          cannot see life with optimism, and instead can only see the
+          righteousness of environmentalism; it makes you think you're better
+          than everyone else, doesn't it? You think you're a saint because you
+          care about pollution and plastic, and cows. And you dare to make such
+          a big decision for so many millions of people. You are not only going
+          to stop pollution but the entire intellectual production, you have
+          just put an end to art, to writing, to someone being able to enjoy a
+          sunset, to someone being able to fall in love and enjoy life.<br /><br />
+          What happened in Jakarta, I'm sorry, but it is an act of fascism, and
+          what you professed was the complete opposite. You have become what you
+          hated most, and you don't even realize it, you imbecile.<br /><br />
+          I'm not staying, although I don't think you'll mind, I don't even know
+          whether you can read anymore. <br /><br />
+
+          Dr Yao Longjie<br /><br />
+          PhD in Neurobiology<br /><br />
+          Head of AJKJ Nexial Gate Committee
+        </div>
+        <div class="small">
+          I woke up in the dark, feeling an intense pain in my left hand. I
+          didn't even want to touch it. I crawled pathetically in the darkness
+          of the deck to discover that something had pierced through the hull,
+          emptied the ayahuasca emulsion, and contaminated everything with a
+          bioluminescent liquid, which at first could barely be seen, but little
+          by little It gave off such a shine that it let me see everything in
+          great detail. The colossal eidolon had not only penetrated the mecha's
+          chassis; it had contaminated it. It was an immense crawling nervous
+          system or disembodied spinal cord, that writhed around inside my
+          mecha, stretching its spinal nerves and branching inside the crusted
+          fluxus. Interdimensional parasitism, I thought.
+        </div>
+        <div class="small">
+          The same parasitism that had taken over the entire planet. I could
+          barely move, but I could feel, not only the details of my body, the
+          state of my mouth, the sweat that covered my face, the sound of my
+          breathing. I also felt a kind of pleasure, waves of euphoria that
+          escalated and spread through my toes, up to my genitals and my
+          abdomen. I tried to move, holding back laughter and happy thoughts
+          while at the same time feeling the pain in my arm. I looked for the
+          exit, but the airlock was perfectly sealed, and the mechanical
+          ejection lever was completely jammed. I was locked inside and could
+          only wait for the hunger or the contaminated air to kill me.
+        </div>
+      </div>
+
+      <div class="row5">
+        <div class="small">
+          A sudden electrical discharge, possibly coming from the eidolon,
+          produced a muscular spasm in the leg of the MAGELLAN; it hurt me, but
+          at the same time it felt like a tickle. The systems were back in
+          operation. The lights came back on, the broken screens showed noise,
+          and I had some control over the robot's limbs. My mind slowly linked
+          with the giant's mind, only to confirm that it was already infected. I
+          breathed in and grasped the thick smell of the jungle: plants,
+          humidity, animals, decomposition, and flowers.
+        </div>
+        <div class="small">
+          The omnidirectional vision system linked successfully with my optical
+          nerve, and I could see again, from above, below, around, and in
+          detail. The eidolon had penetrated the mecha from a dozen points: very
+          long spikes sprang out of my back, several phosphorescent, bulging,
+          and enormous lemon-green tumors had grown like a bloody proliferation
+          of fungi from the mecha's face and neck, spheres colored in bright
+          cyan and magenta protruded from the spaces between the armor and the
+          skin, branches of the most ultramarine blue made me look like a living
+          coral reef. It was clear that the effects had also infected the
+          software, causing the screens to fill with bugs, the programming to go
+          crazy, meaningless commands to be executed, rhythmic pulses to be
+          played, almost like distorted electronic music.
+        </div>
+        <div class="small">
+          —Earth to base. Here MAGELLAN; Technician Luna in section 4.35, sector
+          2b. Do you copy? R 34. My unit is still operative. Two other units
+          were destroyed. Two pilots down, I'm injured.
+        </div>
+        <div class="small">
+          I waited a while, then repeated the message. I finally heard several
+          voices. At first, I was joyful, but then I knew something was wrong:
+          the voices were not coming from the mecha communication system, but
+          from my mind, and they were not in a human language. I was able to
+          move the mecha. I rose heavily from the jungle, managing to put the
+          machine back on its feet, and began to limp, now a semi-symbiotic
+          entity, half-humanoid, half alienoid. I walked towards Jakarta,
+          stumbling every so often, thinking that maybe I could still accomplish
+          my mission and retrieve the Nexial Gate. I saw eidolons in the
+          distance, rising like alien trees.
+        </div>
+        <div class="small">
+          They didn't look at me, they didn't look for me, and it didn't occur
+          to them to face me in battle; they just stood tall, towering over the
+          jungles of west Java, some walked heavily with no apparent direction
+          or intention. I looked for human traces and it wasn't difficult to
+          find them: remains of a rotten bridge, houses covered in vines, and
+          finally the city. Kilometers of what once had been the slums of
+          Jakarta, broken streets zigzagging endlessly, buildings covered in
+          vines, spectacular trees growing from what had once been clusters of
+          houses of South Tangerang, skyscrapers of the Surdiman area from which
+          rivers poured wildly, what looked like shopping malls with worn
+          surfaces covered in moss and lichen. I walked on top of abandoned
+          stores and neighborhoods, my steps destroyed cars that lay almost
+          petrified.
+        </div>
+        <div class="small">
+          It was only after half an hour of making my way through the city in
+          something like a meditation, that I realized how strange it was that
+          the mecha still had battery power. I looked for the maps on the
+          navigation panels, but the computers had gone crazy, some of what the
+          monitors showed in the optic nerve looked like software from the
+          Diaspora, but opening in lotuses of icons, abstract tides of
+          meaningless code, windows that opened and closed, maps, old websites
+          showing tons of information about things I had never seen before.
+        </div>
+        <div class="small">
+          It felt like the mecha had gone psychotic, surfing anxiously through
+          corrupted encyclopedias, databases, search engines, porn sites, bank
+          or university websites at a maddening speed. I closed my eyes, tried
+          to remember the maps that we had memorized since we were children in
+          the Diaspora, and walked trying to find my way, recognizing parks or
+          intersections of the city before getting lost again in my thoughts, in
+          my present. Until I finally began to understand what I was getting
+          into.
+        </div>
+        <div class="small">
+          In what had been ground zero of the infection years ago, the traces of
+          a thousand battles became visible. I could see the craters, the
+          collapsed buildings extending through large areas of ruins and
+          desolation, and in the middle of it all rose the building of Balumian
+          corp.
+        </div>
+      </div>
+
+      <div class="row6">
+        <div class="small">
+          The temple around which the Nexial Wars took place most intensely.
+          Years ago, it had been a minimalist structure of concrete and curtain
+          walls, but now a cluster of black basalt stood tall surrounded by
+          rubble; a monument in the style of the Borobudur, made, we were told,
+          by the eidolons, who enjoyed themselves in building large structures
+          just like children love to build sandcastles.
+        </div>
+        <div class="small">
+          This devastation and silence were so different from what I had been
+          told at school, in the diaspora. They repeated this image of the Feral
+          City as a nest of violence, boiling with weapons and anger, aggressive
+          abominations ready to kill anybody who approached this holy epicenter.
+        </div>
+        <div class="small">
+          I was told they would shoot at me until there was nothing left but a
+          pile of boiling organs. Well, perhaps the infection growing through my
+          body made me invisible to the defense system, and I was already
+          becoming one of them, but there didn't seem to be anyone in any of the
+          large, ruined spaces. Not human beings, at least, just some birds and
+          mammals.
+        </div>
+        <div class="small">
+          I dismantled the pile of stones that replaced the building using only
+          my infected right hand since the left one was still hurting so much.
+          In the center of a square platform, on a cubic altar, were the two
+          rings of the Nexial gate. So many years of war for something so small.
+          It was no longer a simple smooth and polished pair of floating rings;
+          the most diverse collection of extraterrestrial flora grew, spread and
+          lived expanding from the rings off the Nexial Gate.
+        </div>
+        <div class="small">
+          Only when I was face to face with that eccentric and baroque mixture
+          of multicolored organisms did I notice that the eidolons that were
+          patrolling or ruminating around the city had noticed me; not in a
+          threatening way, just with curiosity. Then I heard something.
+        </div>
+        <div class="small">
+          —Kai, Kai, Kai? <br /><br />
+          I can't say it was a single voice. Rather it felt like it was the
+          biotic mass talking through a distorted radio that spoke directly to
+          my mind.
+        </div>
+        <div class="small">
+          I tried not to pay attention to the voices. I crouched down to get a
+          better look and determine whether it would be possible to pry off the
+          Nexial Gate with my fingers or whether I would need some tool to cut
+          through the thick tangle of roots and branches so as not to break the
+          precious artifact. The screens in the cockpit were still firing some
+          psychotic images, codes, and text that showed the union between the
+          diaspora internet and the dreamsphere. The screens suddenly began to
+          tune to something different. Sounds and images connected strangely
+          with my brain. Certain tones, palpitations, squares or circles,
+          photographs of people I knew nothing about.
+        </div>
+        <div class="small">
+          —Your mother is with us.<br /><br />
+          —Your father is with us.<br /><br />
+          —Kai Luna.
+        </div>
+      </div>
+
+      <div class="row7">
+        <div class="small">
+          I stopped. I knew it could be a trap. The Nexial wars had been mostly
+          fought in the mind, when prodigious eidolons made their way through
+          the enemy camp, infecting the minds of everyone in waves of pleasure
+          and pain, forcing them to agree to surrender and join the enemy.
+        </div>
+        <div class="small">
+          Leftists, environmentalists, communists, indigenous peoples, and
+          intellectuals of all sorts gradually joined the ferals. They told me
+          it happened through the World Wide Web: the human internet was
+          seriously infected, and databases had spilled and lost their order.
+          Passwords, bank accounts, state secrets, everything was scattered
+          randomly: videos, movies, books, scientific reports, forums, and
+          social networks; the information empire was now weird. There were
+          thousands of people connected to the network who began with
+          convulsions, sardonic laughter, euphoria, and sexual ecstasy without
+          any provocation. Soon people got lost in their own homes, beginning to
+          obsess over the details of the things around them.
+        </div>
+        <div class="small">
+          —We have all the files if you want to see them in detail.<br /><br />
+          Feeling the waves of pleasure and presentism coursing through my
+          nervous system, I had no choice but to grab the monitors with my fists
+          and open my knuckles on the LED glass. The hypnosis stopped, or at
+          least its effects were delayed. I closed my eyes, but the voices were
+          still there.
+        </div>
+        <div class="small">
+          —They lied to you. Kai. Your parents are not dead. We are here. I want
+          you to see the conversations, papers, and reports, and see for
+          yourself. We have stored human history, and its discoveries.
+        </div>
+        <div class="small">
+          I operated the robot's right hand and produced a cannon that fired a
+          sharp plasma beam, with which I used to cut the vines, roots, veins,
+          fungal growths, and algae while doing my best to ignore what was
+          happening around me. I focused intensely, cutting biomass around the
+          frame of the artifact but at the same time beginning to feel the
+          increase in the soporific and highly pleasurable effects of the
+          dreamsphere, as it reached into my lungs and affected my central
+          nervous system.
+        </div>
+        <div class="small">
+          Now I could focus on details that I wouldn't have paid attention to
+          before. The biological structures seemed to me to be masterpieces,
+          extraordinary beings that I was destroying. I stopped. The feeling
+          that those symmetrical bulbs, those colors and spots of such
+          extraordinary shades of blue, purple and lilac gave me, was that they
+          were part of my own body, and that, in that context, I was playing
+          with the organs of an immense god. A god which I was also a part of.
+        </div>
+        <div class="small">
+          —Son. Kai. I'm Nafisa.<br /><br />
+          Yes, of course. My mom. I was able to dissociate myself from the
+          mecha's body for a second to notice that, inside the cockpit, the
+          eidolon's filaments were beginning to touch my body. On my hands and
+          legs, branches of the alien nervous system that filled the deck had
+          bitten me like leeches, attached themselves to my body, injecting some
+          substance to drug me and binding me to the creature. I started to
+          stir, trying to remove the white veins one by one, tear them out, and
+          cut them with my teeth.
+        </div>
+        <div class="small">
+          —Oh yeah, mimicking my parents. I was expecting you to do something of
+          the sort, how predictable. —I said, a little to myself. I didn't want
+          to respond to the voices that were playing with my head. It was my
+          years of training to try not to pay attention.
+        </div>
+      </div>
+
+      <div class="row8">
+        <div class="small">
+          I continued cutting away at the vines and roots, ignoring comments
+          that still seemed ghostly and meaningless, yet strangely familiar. I
+          also noticed that the eidolons were approaching curiously, moving in
+          their colorful monstrosity, surrounding me. I thought maybe if I
+          talked to them I could distract them while I continued at my job.
+        </div>
+        <div class="small">
+          —The eidolons are nothing more than colonizers. And they killed you,
+          mom.<br /><br />
+          —No. No. No. —the voices responded. —Course correction. Correction.
+          Course correction.
+        </div>
+        <div class="small">
+          —We had a beautiful life on Earth. And you expelled us from our
+          home.<br /><br />
+          —Humans don't have a beautiful life on Earth. Those who have, based on
+          the suffering of millions of other life beings.
+        </div>
+        <div class="small">
+          An eidolon in front of me began to mutate, between contractions, and
+          strange movements, with lumps inflating and limbs definitively joining
+          together, it acquired the shape of a gigantic human. A naked,
+          multicolored woman. My mother. At its side, another eidolon went
+          through a similar process, until becoming my father. Juno Luna.<br /><br />
+          I paused in my task for a second and looked at my parents' naked
+          bodies, albeit in deep reds and neon blues.
+        </div>
+        <div class="small">
+          —I missed you so much, baby. Now it's hard to understand that things
+          were not always like this, but Juno was already in the dreamsphere
+          when it happened, he was in Jakarta at the epicenter of everything
+          when it happened. And when you were born.<br /><br />
+          —Yes, the Ferals kidnapped him —said I.
+        </div>
+        <div class="small">
+          —No one kidnapped me. I was the one who gave all the intelligence to
+          Chatreya to enter Balumian.<br /><br />
+          It had to be a lie. That's not what Peter told me. Peter told me…
+        </div>
+        <div class="small">
+          —Peter didn't want you to know the truth. Also, at this point, we
+          don't know if he is your father or not. Or if it's me. —The eidolon
+          shaped like my father laughed. —We loved each other. The three of us.
+          We were a family.
+        </div>
+        <div class="small">
+          —But Peter ended up protecting capitalists, companies, transnational
+          corporations, and powerful people.
+        </div>
+      </div>
+
+      <div class="row9">
+        <div class="small">Fleshy lumps of biological matter grew on my body, vines, roots, and nerves stretched out and grabbed my hands. I struggled in the cockpit, and the mecha began to move irregularly. Something grabbed my leg. As I turned to tear off whatever I had there, another mass clung to the mecha's face. </div>
+        <div class="small">The eidolon that had infected the mecha was taking control of its movement, and taking over the vital systems of the machinery, it even seemed to be rearranging the internal systems, and mechanisms, discarding servomotors or appropriating the thorium reactor. I backed away trying to regain control, using whatever strength I had left in my right hand to hit my bump-infected face with repeated blows, and I tried to tear the tentacles off. </div>
+        <div class="small">The mecha fell to the ground with me inside, together we wallowed in a sea of colorful lichens, surrounded by strange eidolons that looked at me with curiosity. In the deck, the nerves were beginning to connect to my face. I struggled with the vines, splashing bioluminescent liquid, ripping something off just as something else grabbed my arm, or my foot. </div>
+        <div class="small">Nerves, branches, and veins were entering through the holes in my body, I felt them writhing in my genitals, and in my anus, they played with my ears, they grabbed my hands and my face, and they touched my gums and my teeth. And I no longer had the energy to continue the struggle. </div>
+        <div class="small">The robot's intestines were emptied, the internal organs completely removed and exchanged for other things, an arm was torn off, which hurt me immensely and I screamed through the luminous liquid. The infected lymph pumped presentism into my bloodstream. The nerves of my own body began to move inside me, like transparent worms.</div>
+        <div class="small">—Calm down, baby. You don't have to be afraid anymore. Let yourself go.<br><br>
+          There was no point in fighting. I stayed still, breathing heavily, trying not to drown.
+          </div>
+        <div class="small">—Just look around you. Think about the places you have traveled on this planet and tell me if it would be best to build a shopping mall here, or a company where people must work for eight hours every day, and garbage over there. That's what the diaspora wants. No?</div>
+        <div class="small">When I opened my eyes, the eidolon that was my mother was lulling me to sleep.<br><br>
+          —Open your nerves, — she whispered in my mind.
+          </div>
+      </div>
+
+      <div class="row10">
+        <div class="small">As if it were a basic human technique or movement that I had completely forgotten, I moved something inside my body, like the way your throat moves or that secret muscle in your inner ear. Then my nerves began to push their way out of my body. It wasn't painful. The nerves spread out of my face, out of my hands and my legs, growing gently like a little plant. </div>
+        <div class="small">Maybe I didn't care much about my own body anymore. Maybe I didn't care much about my own life anymore. I could only feel the granular pleasure of living in the present. My body expanded from being a tiny thing, occupying the entire size of the pilot capsule, joining with cancerous lumps, igneous fungi, mystical organs, stomachs and esophagus of beings from other dimensions until I became my own mecha. </div>
+        <div class="small">The “I” became the monster. It became clear that the eidolons, the extraterrestrials, were made of thousands of people who had attached themselves at some point to an alien core more or less voluntarily. Humanity was evolving into something new. A symbiogenesis in which aliens and we were a new type of life form, just like mitochondria and single cells had become eukaryotes; evolutionary changes were happening rapidly, and we would soon become new thousands of living beings.</div>
+        <div class="small">Bubbly minds greeted me: people who decades ago would have identified as Colombian or Australian, male or female, now seemed more like shapeless masses of light. They had not thereby lost their individuality, nor did they completely coexist as a single being, or an almost theological entity. Rather they existed in a stream of consciousness between being one and being multitudes.</div>
+        <div class="small">I felt Mom's hug, and Dad's hug. Only they were no longer hugs, but hot nodes of nerves clinging and squeezing each other, exchanging telepathic information. And I felt the love they had for Peter. They missed him, they wanted to have settled that dispute in a hug and love. But Peter was not prepared to leave behind his middle-class life with a good salary. It seemed too radical to end the sources of air pollution because he liked to travel by plane, he was an Apple fan and he dreamed of buying a Tesla that could drive itself.</div>
+        <div class="small">When I opened my eyes, I no longer saw like a human, with two frontal eyes facing a single direction. There were tiny clusters of eyes that covered my entire body, giving me vision much more complicated than stereoscopic vision.</div>
+        <div class="small">There's no future. I stand in my hundred-meter height, noticing that I have lost the limits that make up the anthropomorphic figure of the robot. Metallic parts fall thunderously like shells while my limbs multiply. I look one last time at the Nexial Gateway. I can spend hours looking at it, exploring every detail, smelling every detail. It is an endless abyss, I can delve and delve and delve into the present, one thought leads to another, and another. And every thought is the present itself. </div>
+        <div class="small">I feel waves of pleasure, pulling tendons somewhere in my neck and legs. I am perfectly aware of my nervous system, every sensation deserves to be explored. If I prefer, I can also explore my own emotions with the same psychedelic concentration; I can immerse myself in my ideas, my concepts, my fears. I can communicate them to others without the anxiety of the future, and we can, together, analyze and understand each other. The aliens, who have become our backbones, seem to orchestrate in-person activities. Dances? Games? Do you walk to distant places to delight in what exists?</div>
+      </div>
+
+      <div class="row11">
+        <div class="small">When I think that that's it, that what remains of the rest of my existence is summarized in wandering aimlessly through the immensity of the planet (which is quite a lot considering that we could spend eternity watching how the clouds or the water move), I discover new ways of existing.</div>
+        <div class="small">I have lived for (months?) wandering between jungles and continents, coming across ruins of human cities by surprise, curiously observing small windows towards individual rooms, ruined stairs, and static cars among the greenery. I hear stories from those who lived there, part of the immense network system. I take strides across the ocean and am amazed by volcanoes, I dive and swim, I cross a desert, a wasteland, a medieval citadel.</div>
+        <div class="small">When I remember again that there was such a thing as a “Nexial gate”. An alien prepares me for my first jump.</div>
+        <div class="small">—Maybe you don't notice it, but you have a Nexial gate inside you. We all have a machine capable of crossing intergalactic distances in consciousness. Consciousness itself is an intergalactic portal.</div>
+        <div class="small">A group of eidolons perform the necessary steps of a small dance or ritual. Torrents of dimethyltryptamine activate tunnels, surrounded by petals of light. The doors between worlds open like flowers. We can explore other maps, sometimes we cross them without realizing it while appreciating the shape of a fish. </div>
+        <div class="small">That's what it was about all along. To expand the exploration platforms, and wander in the tides of the present. Walk without waiting for a destination, create without thinking of the result, live without thinking about death, success, growth, development, progress, profits, the future, old age, tomorrow, a better tomorrow, or a worse yesterday, there is no past, there is no beginning, there are no centuries before Christ, there is no remote prehistoric world. There is only the now. The present is this phrase. This phrase. This phrase.</div>
+        <div class="small">So I crossed to Valtiklar, without realizing it. I have always been in Valtiklar, we are the very elves of DMT, and we walk through worlds more fluorescent than Earth. I am now on Zumia Exis. It's a mostly yellow world, and we are surrounded by shifting polygons that are siblings, friends, mothers, or a reflective mirror of ourselves. </div>
+        <div class="small">Aliens from various universes have flooded the Earth, but we have also invaded theirs. I learn to become a polygon. You have always been a geometric solid. Learn to fractalize yourself, factor yourself by a prime number. I am in a world where the concept of food does not exist. I'm living in a planetary stomach. I am in a ship of neon technology and the gods teach me to fragment myself, to reorganize myself. All this, of course, upholstered in repetitions of the manual to create a Nexial door, to help others reach the same top development, the omega point of galactic civilization.</div>
+      </div>
+
+      <div class="row12">
+        <div class="small">I see a human entering Plocomia 11. He has entered with a neon suit. He's high on Dimethyltryptamine. There are several of us who see him, amazed at the changing tides of mandelbulbs, of self-replicating figures, fractaloids that implode cyclically, several of us want to greet him.</div>
+        <div class="small">—Peter?<br><br>
+          But Peter doesn't understand me. I can hardly tell you how happy I am to see you.
+          </div>
+        <div class="small">—Peter. I miss you a lot. I want to show you all the hyper toys we have here.<br><br>
+          Peter seems to recognize me. Maybe? Maybe he can see me? Maybe he's here to transcribe the manual. If he manages to build a Nexial gate again he could come with me permanently. I will show you the code. I open polygonal hyper-signifiers, transparent objects full of code. Copy it fast, Pete, come meet me soon.
+          </div>
+        <div class="small">—I'm glad you managed to integrate. —He seems to want to hug me.<br><br>
+          I jump inside his holographic body, trying to show him my love, I take him by the hand through the immense geographies of Aktum. Peter, Peter, I miss you. I love you. Why don't you come with us. He seemed to want to say goodbye. Then he explained in his human language that he had to leave now and just wanted to make sure I was okay. Immediately he became a ball of light that streaked the sky of Aktum.
+          </div>
+        <div class="small">—No one tells you what happens with Peter? —an electric blue eidolon who saw everything from afar asked me.<br><br>
+          —No one tells.
+          </div>
+        <div class="small">—Peter doesn't want the regular human way of life to disappear. He believes that there is intrinsic value in individual experience and that perhaps in something they call “the future” they find another way to develop their civilization without all the destruction. There is a pact. A pact between him and us.</div>
+        <div class="small">When the Nexial Wars are nearing their end, Peter Yao is having a DMT ritual. In it he is addressing us, and asking us to stop the humans from taking the Nexial Gate into space. Why do humans want that? Agh, they're stupid. </div>
+        <div class="small">They think they can bring warmonger eidolons from the Salvia Divinorum to fight a new round of Nexial wars. Nobody believes him in the space colonies, but it is true. If they take the door to the Diaspora, what remains of humanity is also the present. We accept. That's why we don't let them take the Gateway. To honor Peter Yao. That's why Eidolons fight on Earth against giant robots.</div>
+      </div>
+
+    <div class="row13">
+      <div class="small">—But then why does he want to make me fight on Earth? </div>
+      <div class="small">—Because I'm feeling guilty. He is stealing you from your parents. Your parents ask many times to return you, and he wants to return you. In dreams, on DMT or ayahuasca surfing mode. He knows you can be integrated in symbiogenesis and be happy.</div>
+      <div class="small">Lined up, pressed against the windows of the observation deck in the smelly and dilapidated space station where I grew up, the history teacher forced us to take a good look at “the green and blue beauty of Planet Earth” surrounded by hundreds of other space stations like ours, entire countries made of steel and ugly solar panels that looked like space garbage.</div>
+      <div class="small">The teacher and others repeated it to us every chance they could, with resentment, fear, and hunger: “Take a good look at where we come from, and where we need to return to. Those cursed fundamentalists expelled us from paradise. That's where the resources are! The minerals, the trees, and life itself. “You can't even imagine how beautiful those landscapes are.” Then we would return to class in a sad line, to talk, as usual, about the Nexial Wars for control of the gate.</div>
+      <div class="small">After classes, I returned, through the compartments of the central hallway, to my father's room. Like many, Peter Yao was a fallen man in the pandemic of mental health; it was I who had to feed him and take care of him. I forced him to bathe, to continue his little routines, and brush his teeth. He was tormented by those he left, especially Juno and Nafisa; my other parents, according to what he told me. </div>
+      <div class="small">Dad had been a science celebrity, he even kept the articles that had been written about his work. However, after the great migration, he began a process of degeneration, in which he barely managed to raise me, but by the time I was fifteen, the role had been completely reversed. </div>
+      <div class="small">During much of that time, he had tried to convince the authorities not to attack Earth. He spoke ill of the Columbian-Fluxus program, which had been sold to the public as the only way to effectively combat aliens and re-take our land, by building giant robots in space from cloned eidolons; but he fought even harder to stop them from bringing the Nexial Gate to the space stations of the diaspora. </div>
+      <div class="small">Nobody paid attention to him, the scientific authorities were sure that they could use the door to bring beings from other dimensions, perhaps some more malevolent, like the demons found during bad trips with anticholinergics like datura or DMX, dark lords from the crystal meth universe, or the gods of the Salvia; entities or cosmic jesters, which, scientists believed, we could instrumentalize to produce a new Nexial war between gods from different worlds to re-colonize Earth.</div>
+    </div>
+
+    <div class="row14">
+      <div class="small">When I confessed to Peter that I wanted to enlist in the Columbian-Fluxus program, he looked at me with some sadness, and he did mention Juno and Nafisa.</div>
+      <div class="small">He had told me how both were killed by the Ferals during the war, and only with luck had he been able to rescue me during the expansion of the dreamsphere; perhaps it made sense to seek revenge.</div>
+      <div class="small">He didn't say much more, but he also didn't ask me not to. </div>
+      <div class="small">Maybe he knew something else.</div>
+      <div class="small">Sometimes he would inject DMT in his room and wouldn't tell me what he had seen. </div>
+      <div class="small">I finally said goodbye to him, got into the military program, and got pretty good at synchronization in the mind-machine coupler.</div>
+      <div class="small">Grown into a man, with muscles and all, papa Yao hugged me one last time before I was sent to my first mission and said in a strange voice of mental illness:</div>
+      <div class="small">“If you ever see them, tell them I miss them.”</div>
+    </div>
+  </div>
+
+    <!-- THE REST -->
+
+    <!-- <div class="container">
+      <div class="medium-long text">
+        Chatreya, a notorious anarcho-primitivist, led the assault team
+        comprising professional mercenaries and her loyal followers. The group,
+        heavily armed with submachine guns, grenades, and high-tech equipment,
+        stormed the facility at dawn. The mercenaries, hired through the dark
+        web, and The Ferals, executed a meticulously planned operation,
+        infiltrating the building from multiple entry points, according to our
+        sources.
+      </div>
+      <div class="medium-long rotating-target"></div>
+      <div class="medium-long center-content">
+        <div class="speedSlider-container">
+          <input type="range" min="1" max="10" value="1" class="speedSlider" />
+          <input type="range" min="1" max="10" value="2" class="speedSlider" />
+          <input type="range" min="1" max="10" value="3" class="speedSlider" />
+          <input type="range" min="1" max="10" value="4" class="speedSlider" />
+          <input type="range" min="1" max="10" value="5" class="speedSlider" />
+          <input type="range" min="1" max="10" value="6" class="speedSlider" />
+          <input type="range" min="1" max="10" value="7" class="speedSlider" />
+          <input type="range" min="1" max="10" value="8" class="speedSlider" />
+          <input type="range" min="1" max="10" value="9" class="speedSlider" />
+          <input type="range" min="1" max="10" value="10" class="speedSlider" />
+        </div>
+      </div>
+      <div class="medium-long canvas-container">
+        <img class="layer" id="layer4" src="imageD.png" />
+        <canvas class="layer" id="canvas2"></canvas>
+      </div>
+      <div class="medium rotating-target"></div>
+      <div class="medium"></div>
+      <div class="medium text">
+        The being, a colossal and abstract form of shifting neon lights and
+        strange, polygonal structures, began to materialize, breaking through
+        the laboratory's ceiling. Its presence caused widespread panic and left
+        onlookers in a state of euphoric paralysis.
+      </div>
+      <div class="medium scrollbar-target-vertical"></div>
+      <div class="medium">
+        <div class="circle-container">
+          <label><input type="radio" name="speed" value="1" /></label>
+          <label><input type="radio" name="speed" value="2" /></label>
+          <label><input type="radio" name="speed" value="3" /></label>
+          <label><input type="radio" name="speed" value="4" /></label>
+          <label><input type="radio" name="speed" value="5" /></label>
+          <label><input type="radio" name="speed" value="6" /></label>
+          <label><input type="radio" name="speed" value="7" /></label>
+          <label><input type="radio" name="speed" value="8" /></label>
+          <label><input type="radio" name="speed" value="9" /></label>
+          <label><input type="radio" name="speed" value="10" /></label>
+        </div>
+      </div>
+      <div class="medium center-checkbox">
+        <input type="checkbox" id="invertCheckbox" />
+      </div>
+      <div class="medium"></div>
+      <div class="medium replace-content">
+        <button id="replaceButton" class="close-button">X</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea1"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea2"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea3"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea4"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long"></div>
+      <div class="small-long"></div>
+      <div class="small-long"></div>
+      <div class="small-long"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small rotating-target"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small rotating-target"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small"></div>
+      <div class="small-long rotating-target"></div>
+      <div class="small-long"></div>
+      <div class="small-long"></div>
+      <div class="small-long" id="flipFlopDiv">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nulla
+        quam, accumsan ut nibh porta, egestas suscipit arcu. Donec condimentum
+        eros nec dui scelerisque, eu laoreet libero imperdiet. Donec vehicula,
+        felis interdum condimentum suscipit, purus diam rutrum ipsum, a
+        consectetur lacus lacus at dui. Nam imperdiet porta est, eget egestas
+        ipsum vestibulum eget. Nunc sodales purus non sem pellentesque, nec
+        sollicitudin nunc placerat. Phasellus nunc sapien, mollis ut velit sed,
+        pellentesque condimentum neque. Aenean pulvinar lorem vitae dapibus
+        sollicitudin. Praesent mattis, odio non finibus pharetra, lacus lectus
+        gravida odio, ut accumsan libero mi a ligula.
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea5"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea6"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea7"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+      <div class="small-long center-content">
+        <textarea
+          id="animatedTextarea8"
+          class="animatedTextarea"
+          rows="15"
+          cols="1"
+        >
+⧼̶◢̴⋆̵⧽̴⋆̶⧻̵⧾̵⦚̸⩗̷⋇̸⧮̸⧼̴◢̷⋆̴⧽̵⋆̷⧻̶⧾̸⦚̸⩗̴⋇̷⧼̴◢̵⋆̸⧽̴⋆̴⧻̵⧾̵⦚̶⩗̷⋇̸⧮̷⧼̷◢̸◢̶◢̷◢̷◢̶◢̷⋆̴⧽̶⋆̷⧻̸⧾̵⦚̸⩗̸⋇̶⧼̷◢̸◢̴◢̶⋆̶⧽̴⋆̵⧻̵⧾̷⦚̶⧼̶◢̸⋆̶⧽̴⋆̵⧼̶◢̷⋆̸⧽̸⧽̸⧽̵⧽̵⧽̴⋆̷⩗̵⋇̴⧮̶⧼̴◢̵⋆̷⧽̴⋆̷⧻̷⧾̴⦚̷⩗̷⋇̷⧼̶◢̵⋆̴⧽̴⋆̸⧻̵⧾̶⦚̴⩗̴⋇̴⧮̴⧼̸◢̴⋆̸⧽̸⋆̶⧻̸⧾̶⦚̵⩗̸⋇̶⧼̸◢̸⋆̷⧽̵⋆̴⧻̷⧾̷⦚̷⩗̵⋇̶⧮̸⧼̷◢̶⋆̸⧽̸⋆̴⧻̴ ̴⧾̶⦚̷⩗̸⋇̵⧼̷◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̷⩗̵⋇̸⧮̵⧼̸◢̷⋆̷⧽̴⋆̸⧻̶⧾̴⦚̵⩗̴⋇̵⋆̵⧻̶⧾̸⦚̸⩗̵⋇̷⧮̶⧼̵◢̶⋆̴⧼̸◢̸⋆̴⧽̵⋆̶⧻̷⧾̵⦚̸⩗̷⋇̶⧮̶⧼̴◢̷⧽̵⋆̵⧻̴ ̸⧾̸⦚̷⩗̸⋇̵⧼̶◢̶⋆̷⧽̶⋆̵⧻̵⧾̸⦚̷⩗̷⋇̶⧮̷⧼̵◢̶◢̴◢̶◢̶◢̶◢̶⋆̴⧽̶⋆̷⧻̸ ̶⧾̸⦚̴⩗̸⋇̵⧼̷◢̸◢̸◢̵⋆̸⧽̸⋆̴⧻̸⧾̴⦚̷⧼̵◢̶⋆̷⧽̴⋆̵⧼̶◢̵⋆̶⧽̴⧼̵◢̸⋆̷⧽̷⋆̵⧻̵⧾̶⦚̷⩗̴⋇̵⧮̴⧼̶◢̵⋆̸⧽̶⋆̴⧻̴⧾̴⦚̴⩗̸⋇̵⧼̸◢̸⋆̷⧽̸⋆̴⧻̶⧾̷⦚̵⩗̵⋇̵⧮̷⧼̷◢̸◢̸◢̸◢̵◢̸◢̶⋆̷⧽̸⋆̷⧻̸⧾̶⦚̸⩗̷⋇̵⧼̷◢̶◢̴◢̴⋆̷⧽̶⋆̷⧻̴⧾̶⦚̵⧼̶◢̸⋆̵⧽̵⋆̵⧼̵◢̸⋆̸⧽̶⧽̴⧽̸⧽̴⧽̶⋆̷⩗̷⋇̷⧮̴⧼̴◢̷⋆̷⧽̶⋆̷⧻̵⧾̵⦚̶⩗̶⋇̵⧼̸◢̵⋆̶⧽̵⋆̶⧻̶⧾̶⦚̴⩗̷⋇̸⧮̶⧼̴◢̶⋆̷⧽̶⋆̸⧻̶⧾̶⦚̴⩗̴⋇̵⧼̴◢̷⋆̶⧽̴⋆̴⧻̸⧾̶⦚̶⩗̴⋇̵⧮̸⧼̷◢̶⋆̸⧽̷⋆̴⧻̵ ̴⧾̴⦚̵⩗̴⋇̸⧼̸◢̸⋆̷⧽̸⋆̶⧻̷⧾̶⦚̷⩗̷⋇̷⧮̷⧼̵◢̴⋆̷⧽̸⋆̷⧻̶⧾̷⦚̵⩗̵⋇̶⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̶⧼̸◢̶⋆̷⧼̸◢̴⋆̷⧽̶⋆̸⧻̶⧾̵⦚̷⩗̸⋇̴⧮̶⧼̶◢̵⧽̴⋆̸⧻̸ ̸⧾̶⦚̴⩗̵⋇̸⧼̴◢̵⋆̵⧽̸⋆̵⧻̴⧾̴⦚̵⩗̴⋇̴⧮̶⧼̴◢̸◢̷◢̶◢̵◢̶◢̷⋆̷⧽̵⋆̴⧻̸ ̴⧾̶⦚̴⩗̶⋇̷⧼̶◢̸◢̷◢̴⋆̴⧽̸⋆̴⧻̷⧾̷⦚̴⧼̶◢̸⋆̷⧽̶⋆̸⧼̵◢̸⋆̶⧽̸⧼̶◢̴⋆̷⧽̴⋆̸⧻̶⧾̴⦚̸⩗̶⋇̴⧮̷⧼̴◢̷⋆̶⧽̷⋆̵⧻̴⧾̸⦚̴⩗̸⋇̴⧼̷◢̷⋆̸⧽̵⋆̶⧻̴⧾̸⦚̶⩗̸⋇̵⧮̴⧼̸◢̴◢̷◢̴◢̶◢̵◢̶⋆̸⧽̶⋆̸⧻̶⧾̷⦚̸⩗̸⋇̷⧼̸◢̵◢̴◢̷⋆̴⧽̸⋆̷⧻̵⧾̵⦚̶⧼̴◢̵⋆̷⧽̴⋆̶⧼̸◢̷⋆̵⧽̷⧽̶⧽̶⧽̸⧽̷⋆̷⩗̸⋇̶⧮̴⧼̷◢̶⋆̴⧽̷⋆̴⧻̴⧾̴⦚̵⩗̶⋇̸⧼̷◢̸⋆̶⧽̶⋆̷⧻̴⧾̴⦚̵⩗̸⋇̵⧮̵⧼̵◢̶⋆̷⧽̶⋆̴⧻̵⧾̸⦚̴⩗̵⋇̶⧼̶◢̵⋆̶⧽̷⋆̸⧻̴⧾̷⦚̶⩗̴⋇̷⧮̸⧼̴◢̶⋆̷⧽̴⋆̶⧻̵ ̷⧾̵⦚̶⩗̶⋇̵⧼̶◢̴⋆̶⧽̶⋆̶⧻̷⧾̷⦚̵⩗̷⋇̴⧮̷⧼̴◢̶⋆̴⧽̸⋆̵⧻̶⧾̴⦚̵⩗̵⋇̶⋆̸⧻̷⧾̴⦚̶⩗̷⋇̷⧮̷⧼̷◢̸⋆̷⧼̴◢̷⋆̸⧽̷⋆̵⧻̵⧾̴⦚̸⩗̵⋇̷⧮̵⧼̸◢̴⧽̶⋆̸⧻̵ ̸⧾̸⦚̶⩗̵⋇̵⧼̴◢̶⋆̶⧽̴⋆̴⧻̶⧾̸⦚̴⩗̵⋇̸⧮̴⧼̴◢̶◢̷◢̷◢̵◢̴◢̷⋆̸⧽̴⋆̴⧻̸ ̴⧾̸⦚̵⩗̵⋇̵⧼̶◢̵◢̶◢̷⋆̷⧽̸⋆̵⧻̷⧾̵⦚̵⧼̷◢̴⋆̶⧽̶⋆̶⧼̶◢̵⋆̶⧽̴⧼̶◢̷⋆̴⧽̸⋆̶⧻̴⧾̸⦚̸⩗̷⋇̸⧮̷⧼̶◢̷⋆̷⧽̵⋆̴⧻̸⧾̵⦚̴⩗̴⋇̵⧼̶◢̴⋆̸⧽̸⋆̵⧻̶⧾̴⦚̴⩗̸⋇̶⧮̷⧼̴◢̵◢̷◢̷◢̶◢̷◢̶⋆̴⧽̵⋆̴⧻̵⧾̶⦚̴⩗̶⋇̷⧼̸◢̴◢̶◢̵⋆̵⧽̸⋆̶⧻̶⧾̴⦚̵⧼̵◢̶⋆̵⧽̸⋆̴⧼̵◢̸⋆̴⧽̴⧽̴⧽̷⧽̷⧽̶⋆̴⩗̷⋇̴⧮̵⧼̷◢̸⋆̴⧽̶⋆̷⧻̵⧾̵⦚̴⩗̸⋇̷⧼̶◢̶⋆̷⧽̶⋆̷⧻̷⧾̵⦚̴⩗̵⋇̶⧮̵⧼̶◢̶⋆̸⧽̸⋆̶⧻̷⧾̶⦚̴⩗̸⋇̴⧼̴◢̴⋆̷⧽̴⋆̷⧻̵⧾̴⦚̶⩗̷⋇̷⧮̶⧼̷◢̸⋆̶⧽̸⋆̵⧻̸ ̸⧾̶⦚̴⩗̵⋇̵⧼̵◢̷⋆̵⧽̶⋆̸⧻̶⧾̸⦚̸⩗̴⋇̵⧮̷⧼̶◢̶⋆̸⧽̷⋆̶⧻̷⧾̴⦚̶⩗̵⋇̸⋆̷⧻̷⧾̷⦚̴⩗̸⋇̶⧮̴⧼̵◢̷⋆̵⧼̴◢̷⋆̵⧽̶⋆̸⧻̵⧾̵⦚̸⩗̶⋇̸⧮̶⧼̴◢̷⧽̵⋆̸⧻̵ ̴⧾̷⦚̴⩗̷⋇̷⧼̸◢̷⋆̷⧽̵⋆̴⧻̶⧾̷⦚̶⩗̴⋇̸⧮̷⧼̴◢̸◢̵◢̷◢̴◢̴◢̴⋆̴⧽̸⋆̷⧻̵ ̷⧾̶⦚̷⩗̵⋇̸⧼̶◢̵◢̵◢̶⋆̸⧽̴⋆̸⧻̷⧾̴⦚̵⧼̶◢̶⋆̴⧽̷⋆̷⧼̴◢̷⋆̸⧽̵⧼̵◢̴⋆̷⧽̶⋆̵⧻̸⧾̴⦚̶⩗̷⋇̶⧮̵⧼̵◢̵⋆̷⧽̵⋆̴⧻̴⧾̵⦚̶⩗̶⋇̷⧼̵◢̵⋆̵⧽̵⋆̴⧻̸⧾̴⦚̵⩗̶⋇̸⧮̷⧼̷◢̴◢̷◢̵◢̵◢̴◢̸⋆̵⧽̶⋆̸⧻̵⧾̶⦚̴⩗̵⋇̶⧼̴◢̶◢̵◢̴⋆̵⧽̸⋆̴⧻̸⧾̵⦚̶⧼̸◢̷⋆̸⧽̴⋆̸⧼̶◢̷⋆̵⧽̴⧽̶⧽̶⧽̸⧽̴⋆̴⩗̵⋇̸⧮̷⧼̴◢̸⋆̷⧽̴⋆̴⧻̵⧾̴⦚̵⩗̵⋇̸⧼̷◢̶⋆̷⧽̵⋆̵⧻̸⧾̷⦚̷⩗̶⋇̸⧮̵⧼̸◢̸⋆̵⧽̸⋆̸⧻̶⧾̵⦚̴⩗̶⋇̸⧼̸◢̸⋆̸⧽̶⋆̸⧻̸⧾̶⦚̷⩗̷⋇̷⧮̷⧼̷◢̷⋆̸⧽̴⋆̸⧻̶ ̴⧾̷⦚̴⩗̴⋇̵⧼̴◢̷⋆̵⧽̵⋆̴⧻̶⧾̸⦚̸⩗̵⋇̸⧮̸⧼̸◢̶⋆̴⧽̷⋆̵⧻̵⧾̸⦚̵⩗̴⋇̸⋆̶⧻̴⧾̵⦚̸⩗̸⋇̶⧮̸⧼̷◢̵⋆̸⧼̷◢̶⋆̶⧽̶⋆̸⧻̵⧾̵⦚̷⩗̴⋇̴⧮̵⧼̷◢̸⧽̶⋆̴⧻̴ ̴⧾̶⦚̶⩗̶⋇̷⧼̷◢̴⋆̸⧽̶⋆̶⧻̴⧾̶⦚̵⩗̷⋇̷⧮̸⧼̸◢̸◢̷◢̴◢̷◢̶◢̸⋆̶⧽̷⋆̵⧻̸ ̴⧾̴⦚̵⩗̸⋇̵⧼̴◢̸◢̶◢̶⋆̵⧽̶⋆̴⧻̶⧾̷⦚̷⧼̶◢̶⋆̷⧽̷⋆̶⧼̸◢̶⋆̷⧽̸⧼̶◢̶⋆̵⧽̶⋆̶⧻̴⧾̶⦚̵⩗̴⋇̶⧮̴⧼̴◢̷⋆̴⧽̵⋆̴⧻̸⧾̸⦚̴⩗̶⋇̶⧼̶◢̸⋆̸⧽̸⋆̶⧻̵⧾̵⦚̴⩗̵⋇̷⧮̸⧼̸◢̴◢̷◢̴◢̸◢̷◢̷⋆̸⧽̷⋆̸⧻̸⧾̵⦚̸⩗̴⋇̵⧼̵◢̷◢̶◢̸⋆̷⧽̶⋆̴⧻̸⧾̸⦚̸⧼̸◢̶⋆̷⧽̶⋆̶⧼̶◢̶⋆̷⧽̸⧽̵⧽̵⧽̶⧽̷⋆̴⩗̸⋇̸⧮̴⧼̶◢̵⋆̵⧽̵⋆̸⧻̸⧾̵⦚̴⩗̴⋇̷⧼̶◢̶⋆̶⧽̴⋆̴⧻̶⧾̵⦚̴⩗̸⋇̷⧮̴⧼̵◢̴⋆̵⧽̶⋆̵⧻̶⧾̷⦚̸⩗̷⋇̴⧼̵◢̷⋆̷⧽̶⋆̷⧻̵⧾̶⦚̶⩗̶⋇̶⧮̶⧼̵◢̴⋆̶⧽̷⋆̶⧻̷ ̵⧾̶⦚̷⩗̷⋇̸⧼̸◢̴⋆̶⧽̶⋆̶⧻̷⧾̴⦚̵⩗̷⋇̴⧮̶⧼̴◢̸⋆̶⧽̵⋆̶⧻̵⧾̸⦚̶⩗̶⋇̸⋆̵⧻̷⧾̷⦚̴⩗̶⋇̴⧮̴⧼̶◢̷⋆̴⧼̸◢̸⋆̴⧽̷⋆̶⧻̷⧾̵⦚̵⩗̶⋇̶⧮̸⧼̶◢̴⧽̸⋆̴⧻̷ ̴⧾̷⦚̶⩗̸⋇̴⧼̵◢̸⋆̷⧽̴⋆̶⧻̸⧾̴⦚̴⩗̴⋇̶⧮̶⧼̴◢̸◢̷◢̵◢̸◢̵◢̶⋆̷⧽̸⋆̵⧻̵ ̶⧾̸⦚̷⩗̵⋇̶⧼̵◢̵◢̴◢̷⋆̸⧽̸⋆̸⧻̶⧾̷⦚̷⧼̵◢̵⋆̶⧽̷⋆̶⧼̵◢̶⋆̸⧽̸</textarea
+        >
+      </div>
+    </div> -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const navbar = document.querySelector('.navbar');
+  const canvasContainer = document.getElementById('canvasContainer2');
+
+  const observerOptions = {
+    root: null,
+    threshold: 0
+  };
+
+  const observerCallback = (entries) => {
+    entries.forEach(entry => {
+      if (entry.target.id === 'canvasContainer2') {
+        if (entry.isIntersecting) {
+          navbar.classList.remove('hidden');
+        } else {
+          navbar.classList.add('hidden');
+        }
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  observer.observe(canvasContainer);
+});
+
+
+</script>
+    
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("scribbleCanvas");
+        const ctx = canvas.getContext("2d");
+        const container = document.getElementById("scribbleContainer");
+        const toggleButton = document.getElementById("toggleButton");
+        const invertButton = document.getElementById("invertButton");
+        const docsFrame = document.getElementById("docsFrame");
+        let drawing = false;
+        let drawingEnabled = false;
+        let invertEnabled = false;
+        const emojiSize = 30; // Size of the emoji
+
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+
+        function invertColors() {
+          if (invertEnabled) {
+            docsFrame.style.filter = "none"; // Reset filter
+          } else {
+            docsFrame.style.filter = "invert(100%)"; // Invert colors
+          }
+          invertEnabled = !invertEnabled;
+          invertButton.textContent = invertEnabled ? "CONCEAL" : "REVEAL";
+        }
+
+        function invertColor(r, g, b) {
+          return `rgb(${255 - r}, ${255 - g}, ${255 - b})`;
+        }
+
+        function drawEmoji(x, y) {
+          ctx.fillStyle = "yellow";
+          ctx.font = `${emojiSize}px serif`;
+          ctx.fillText("🔆", x - emojiSize / 2, y + emojiSize / 2);
+        }
+
+        toggleButton.addEventListener("click", () => {
+          drawingEnabled = !drawingEnabled;
+          canvas.style.pointerEvents = drawingEnabled ? "auto" : "none";
+          toggleButton.textContent = drawingEnabled ? "DISABLE" : "ENABLE";
+          invertButton.textContent = "REVEAL";
+          docsFrame.style.filter = "none"; // Reset filter on toggle
+          invertEnabled = false; // Reset invert flag
+        });
+
+        invertButton.addEventListener("click", () => {
+          invertColors();
+          drawingEnabled = false; // Disable drawing mode
+          canvas.style.pointerEvents = "none"; // Disable canvas interaction
+          toggleButton.textContent = "ENABLE";
+        });
+
+        canvas.addEventListener("mousedown", (e) => {
+          if (!drawingEnabled) return;
+
+          drawing = true;
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          drawEmoji(x, y);
+        });
+
+        canvas.addEventListener("mouseup", () => {
+          drawing = false;
+        });
+
+        window.addEventListener("resize", () => {
+          canvas.width = container.offsetWidth;
+          canvas.height = container.offsetHeight;
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const layer1Src = "imageA.png";
+
+        const img1 = new Image();
+        img1.src = layer1Src;
+        img1.onload = () => {
+          canvas.width = img1.width;
+          canvas.height = img1.height;
+          ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
+        };
+
+        const canvas2 = document.getElementById("canvas2");
+        const ctx2 = canvas2.getContext("2d");
+        const layer3Src = "imageC.png";
+
+        const img3 = new Image();
+        img3.src = layer3Src;
+        img3.onload = () => {
+          canvas2.width = img3.width;
+          canvas2.height = img3.height;
+          ctx2.drawImage(img3, 0, 0, canvas2.width, canvas2.height);
+        };
+
+        const canvas3 = document.getElementById("canvas3");
+        const ctx3 = canvas3.getContext("2d");
+        const layer5Src = "imageE.png";
+
+        const img5 = new Image();
+        img5.src = layer5Src;
+        img5.onload = () => {
+          canvas3.width = img5.width;
+          canvas3.height = img5.height;
+          ctx3.drawImage(img5, 0, 0, canvas3.width, canvas3.height);
+        };
+
+        const eraseAreas = [];
+        const rectSize = 200;
+
+        function gradualClear(x, y, size, duration, ctx, img) {
+          let startTime;
+          function animateClear(time) {
+            if (!startTime) startTime = time;
+            const elapsed = time - startTime;
+            const opacity = Math.max(1 - elapsed / duration, 0);
+            ctx.clearRect(x, y, size, size);
+            if (opacity > 0) {
+              ctx.globalAlpha = opacity;
+              ctx.drawImage(img, x, y, size, size, x, y, size, size);
+              ctx.globalAlpha = 1;
+              requestAnimationFrame(animateClear);
+            }
+          }
+          requestAnimationFrame(animateClear);
+        }
+
+        function gradualHeal(x, y, size, duration, ctx, img) {
+          let startTime;
+          function animateHeal(time) {
+            if (!startTime) startTime = time;
+            const elapsed = time - startTime;
+            const opacity = Math.min(elapsed / duration, 1);
+            ctx.clearRect(x, y, size, size);
+            ctx.globalAlpha = opacity;
+            ctx.drawImage(img, x, y, size, size, x, y, size, size);
+            ctx.globalAlpha = 1;
+            if (opacity < 1) {
+              requestAnimationFrame(animateHeal);
+            }
+          }
+          requestAnimationFrame(animateHeal);
+        }
+
+        canvas.addEventListener("mousemove", function (e) {
+          const rect = canvas.getBoundingClientRect();
+          const scaleX = canvas.width / rect.width;
+          const scaleY = canvas.height / rect.height;
+          const x = (e.clientX - rect.left) * scaleX;
+          const y = (e.clientY - rect.top) * scaleY;
+
+          const rectX = x - rectSize / 2;
+          const rectY = y - rectSize / 2;
+
+          gradualClear(rectX, rectY, rectSize, 500, ctx, img1);
+
+          eraseAreas.push({ x: rectX, y: rectY });
+
+          setTimeout(() => {
+            const area = eraseAreas.shift();
+            gradualHeal(area.x, area.y, rectSize, 1000, ctx, img1);
+          }, 2000);
+        });
+
+        canvas2.addEventListener("mousemove", function (e) {
+          const rect = canvas2.getBoundingClientRect();
+          const scaleX = canvas2.width / rect.width;
+          const scaleY = canvas2.height / rect.height;
+          const x = (e.clientX - rect.left) * scaleX;
+          const y = (e.clientY - rect.top) * scaleY;
+
+          const rectX = x - rectSize / 2;
+          const rectY = y - rectSize / 2;
+
+          gradualClear(rectX, rectY, rectSize, 500, ctx2, img3);
+
+          eraseAreas.push({ x: rectX, y: rectY });
+
+          setTimeout(() => {
+            const area = eraseAreas.shift();
+            gradualHeal(area.x, area.y, rectSize, 1000, ctx2, img3);
+          }, 2000);
+        });
+
+        canvas3.addEventListener("mousemove", function (e) {
+          const rect = canvas3.getBoundingClientRect();
+          const scaleX = canvas3.width / rect.width;
+          const scaleY = canvas3.height / rect.height;
+          const x = (e.clientX - rect.left) * scaleX;
+          const y = (e.clientY - rect.top) * scaleY;
+
+          const rectX = x - rectSize / 2;
+          const rectY = y - rectSize / 2;
+
+          gradualClear(rectX, rectY, rectSize, 500, ctx3, img5);
+
+          eraseAreas.push({ x: rectX, y: rectY });
+
+          setTimeout(() => {
+            const area = eraseAreas.shift();
+            gradualHeal(area.x, area.y, rectSize, 1000, ctx3, img5);
+          }, 2000);
+        });
+
+        const targetDivs = document.querySelectorAll(".scrollbar-target");
+
+        targetDivs.forEach((container) => {
+          container.classList.add("scrollbar-container");
+          for (let i = 0; i < 10; i++) {
+            const scrollbar = document.createElement("div");
+            scrollbar.classList.add("scrollbar");
+            const content = document.createElement("div");
+            content.classList.add("scrollbar-content");
+            scrollbar.appendChild(content);
+            container.appendChild(scrollbar);
+
+            let direction = 1;
+            setInterval(() => {
+              if (
+                scrollbar.scrollLeft >=
+                content.offsetWidth - scrollbar.offsetWidth
+              ) {
+                direction = -1;
+              } else if (scrollbar.scrollLeft <= 0) {
+                direction = 1;
+              }
+              scrollbar.scrollLeft += direction * 5;
+            }, 30);
+          }
+        });
+
+        const targetDivsVertical = document.querySelectorAll(
+          ".scrollbar-target-vertical"
+        );
+
+        targetDivsVertical.forEach((container) => {
+          container.classList.add("scrollbar-container-vertical");
+          for (let i = 0; i < 10; i++) {
+            const scrollbar = document.createElement("div");
+            scrollbar.classList.add("scrollbar-vertical");
+            const content = document.createElement("div");
+            content.classList.add("scrollbar-content-vertical");
+            scrollbar.appendChild(content);
+            container.appendChild(scrollbar);
+
+            let direction = 1;
+            setInterval(() => {
+              if (
+                scrollbar.scrollTop >=
+                content.offsetHeight - scrollbar.offsetHeight
+              ) {
+                direction = -1;
+              } else if (scrollbar.scrollTop <= 0) {
+                direction = 1;
+              }
+              scrollbar.scrollTop += direction * 5;
+            }, 30);
+          }
+        });
+
+        function createRotatingScrollbar(deg, rotatingContainer) {
+          const innerRotatingContainer = document.createElement("div");
+          innerRotatingContainer.classList.add("rotating-scrollbar-container");
+          const innerRotatingScrollbar = document.createElement("div");
+          innerRotatingScrollbar.classList.add(`rotating-scrollbar-${deg}deg`);
+          const innerRotatingContent = document.createElement("div");
+          innerRotatingContent.classList.add("scrollbar-content");
+          innerRotatingScrollbar.appendChild(innerRotatingContent);
+          innerRotatingContainer.appendChild(innerRotatingScrollbar);
+
+          let direction = 1;
+          setInterval(() => {
+            if (
+              innerRotatingScrollbar.scrollLeft >=
+              innerRotatingContent.offsetWidth -
+                innerRotatingScrollbar.offsetWidth
+            ) {
+              direction = -1;
+            } else if (innerRotatingScrollbar.scrollLeft <= 0) {
+              direction = 1;
+            }
+            innerRotatingScrollbar.scrollLeft += direction * 5;
+          }, 30);
+
+          rotatingContainer.appendChild(innerRotatingContainer);
+          return innerRotatingContainer;
+        }
+
+        const rotatingTargets = document.querySelectorAll(".rotating-target");
+
+        rotatingTargets.forEach((target) => {
+          const rotatingContainer = document.createElement("div");
+          rotatingContainer.classList.add("rotating-scrollbar-container");
+          const rotatingScrollbar = document.createElement("div");
+          rotatingScrollbar.classList.add("rotating-scrollbar");
+          const rotatingContent = document.createElement("div");
+          rotatingContent.classList.add("scrollbar-content");
+          rotatingScrollbar.appendChild(rotatingContent);
+          rotatingContainer.appendChild(rotatingScrollbar);
+
+          let direction = 1;
+          setInterval(() => {
+            if (
+              rotatingScrollbar.scrollLeft >=
+              rotatingContent.offsetWidth - rotatingScrollbar.offsetWidth
+            ) {
+              direction = -1;
+            } else if (rotatingScrollbar.scrollLeft <= 0) {
+              direction = 1;
+            }
+            rotatingScrollbar.scrollLeft += direction * 5;
+          }, 30);
+
+          const innerRotatingContainer30 = createRotatingScrollbar(
+            30,
+            rotatingContainer
+          );
+          const innerRotatingContainer60 = createRotatingScrollbar(
+            60,
+            innerRotatingContainer30
+          );
+          const innerRotatingContainer90 = createRotatingScrollbar(
+            90,
+            innerRotatingContainer60
+          );
+          const innerRotatingContainer120 = createRotatingScrollbar(
+            120,
+            innerRotatingContainer90
+          );
+          const innerRotatingContainer150 = createRotatingScrollbar(
+            150,
+            innerRotatingContainer120
+          );
+
+          target.appendChild(rotatingContainer);
+        });
+
+        const speedSliders = document.querySelectorAll(".speedSlider");
+        speedSliders.forEach((slider) => {
+          slider.addEventListener("input", function () {
+            const speed = slider.value;
+            speedSliders.forEach((s) => (s.value = speed));
+            document
+              .querySelectorAll(
+                ".rotating-scrollbar, .rotating-scrollbar-30deg, .rotating-scrollbar-60deg, .rotating-scrollbar-90deg, .rotating-scrollbar-120deg, .rotating-scrollbar-150deg"
+              )
+              .forEach((element) => {
+                element.style.animationDuration = `${10 - speed}s`;
+              });
+          });
+        });
+
+        const speedRadios = document.querySelectorAll('input[name="speed"]');
+        speedRadios.forEach((radio) => {
+          radio.addEventListener("change", function () {
+            const speed = radio.value;
+            document
+              .querySelectorAll(
+                ".rotating-scrollbar, .rotating-scrollbar-30deg, .rotating-scrollbar-60deg, .rotating-scrollbar-90deg, .rotating-scrollbar-120deg, .rotating-scrollbar-150deg"
+              )
+              .forEach((element) => {
+                element.style.animationDuration = `${10 - speed}s`;
+              });
+          });
+        });
+
+        function arrangeRadios() {
+          const circleContainer = document.querySelector(".circle-container");
+          const labels = circleContainer.querySelectorAll("label");
+          const radius =
+            Math.min(
+              circleContainer.offsetWidth,
+              circleContainer.offsetHeight
+            ) /
+              2 -
+            20;
+          const centerX = circleContainer.offsetWidth / 2;
+          const centerY = circleContainer.offsetHeight / 2;
+
+          labels.forEach((label, index) => {
+            const angle = (index / labels.length) * (2 * Math.PI);
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            label.style.left = `${x}px`;
+            label.style.top = `${y}px`;
+          });
+        }
+
+        const invertCheckbox = document.getElementById("invertCheckbox");
+        invertCheckbox.addEventListener("change", function () {
+          if (invertCheckbox.checked) {
+            document.body.style.filter = "invert(1)";
+          } else {
+            document.body.style.filter = "invert(0)";
+          }
+        });
+
+        const randomizeFontButton = document.getElementById("randomizeFont");
+        const resetFontButton = document.getElementById("resetFont");
+
+        randomizeFontButton.addEventListener("click", function () {
+          const textDivs = document.querySelectorAll(".text");
+          textDivs.forEach((div) => {
+            const text = div.innerText;
+            div.innerHTML = ""; // Clear the div
+            for (let char of text) {
+              const span = document.createElement("span");
+              span.innerText = char;
+              span.style.fontFamily =
+                Math.random() > 0.5 ? "Times New Roman" : "ABCDiatype";
+              div.appendChild(span);
+            }
+          });
+        });
+
+        resetFontButton.addEventListener("click", function () {
+          const textDivs = document.querySelectorAll(".text");
+          textDivs.forEach((div) => {
+            const spans = div.querySelectorAll("span");
+            let allOriginal = true;
+
+            spans.forEach((span) => {
+              if (span.style.fontFamily !== "ABCDiatype") {
+                allOriginal = false;
+              }
+            });
+
+            if (!allOriginal) {
+              let originalText = "";
+              spans.forEach((span) => {
+                originalText += span.innerText;
+              });
+              div.innerText = originalText; // Reset the div
+            }
+          });
+        });
+
+        const textareas = document.querySelectorAll(".animatedTextarea");
+        let increasing = true;
+        let cols = 1;
+
+        setInterval(() => {
+          if (increasing) {
+            cols++;
+            if (cols >= 50) {
+              increasing = false;
+            }
+          } else {
+            cols--;
+            if (cols <= 1) {
+              increasing = true;
+            }
+          }
+          textareas.forEach((textarea) => {
+            textarea.cols = cols;
+          });
+        }, 100);
+
+        const flipFlopDiv = document.getElementById("flipFlopDiv");
+        if (flipFlopDiv) {
+          let text = flipFlopDiv.innerText;
+          let words = text.split(" ");
+          let currentIndex = 0;
+          let flipFloppedText = words
+            .map((word, index) => {
+              return index % 2 === 0
+                ? `<sub>${word}</sub>`
+                : `<sup>${word}</sup>`;
+            })
+            .join(" ");
+          flipFlopDiv.innerHTML = flipFloppedText;
+
+          setInterval(() => {
+            flipFloppedText = words
+              .map((word, index) => {
+                if (index === currentIndex) {
+                  return index % 2 === 0
+                    ? `<sup>${word}</sup>`
+                    : `<sub>${word}</sub>`;
+                }
+                return index % 2 === 0
+                  ? `<sub>${word}</sub>`
+                  : `<sup>${word}</sup>`;
+              })
+              .join(" ");
+            flipFlopDiv.innerHTML = flipFloppedText;
+            currentIndex = (currentIndex + 1) % words.length;
+          }, 100);
+        }
+
+        const replaceButton = document.getElementById("replaceButton");
+        let originalTextContent = [];
+        let isReplaced = false;
+
+        function replaceAllTextContent(newText) {
+          const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+          );
+          let node;
+          while ((node = walker.nextNode())) {
+            if (!isReplaced) {
+              originalTextContent.push(node.nodeValue);
+            }
+            node.nodeValue = newText;
+          }
+        }
+
+        function restoreOriginalTextContent() {
+          const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+          );
+          let node;
+          let index = 0;
+          while ((node = walker.nextNode())) {
+            node.nodeValue = originalTextContent[index++];
+          }
+        }
+
+        const container14 = document.getElementById("container14");
+        const rows = container14.children;
+        const totalRows = rows.length;
+        const maxScale = 3; // Maximum scale factor
+
+        Array.from(rows).forEach((row, rowIndex) => {
+          const scaleFactor = 1 + (rowIndex / (totalRows - 1)) * (maxScale - 1);
+          const divs = row.children;
+          const divCount = divs.length;
+          Array.from(divs).forEach((div) => {
+            div.style.transform = `scaleX(${scaleFactor})`;
+            div.style.transformOrigin = "center";
+            div.style.flexBasis = `${100 / divCount}%`;
+          });
+        });
+
+        Array.from(rows).forEach((row, rowIndex) => {
+  const scaleFactor = 1 + (rowIndex / (totalRows - 1)) * (maxScale - 1);
+  const divs = row.children;
+  const divCount = divs.length;
+
+  const opacity = rowIndex / (totalRows - 1); // Calculate opacity based on row index
+  row.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`; // Set background color with calculated opacity
+
+  Array.from(divs).forEach((div) => {
+    div.style.transform = `scaleX(${scaleFactor})`;
+    div.style.transformOrigin = "center";
+    div.style.flexBasis = `${100 / divCount}%`;
+  });
+});
+
+        replaceButton.addEventListener("click", function () {
+          if (!isReplaced) {
+            replaceAllTextContent("HOT SINGLES IN YOUR AREA");
+          } else {
+            restoreOriginalTextContent();
+          }
+          isReplaced = !isReplaced;
+        });
+
+        arrangeRadios();
+        window.addEventListener("resize", arrangeRadios);
+      });
+    </script>
+  </body>
+</html>
