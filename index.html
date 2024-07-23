@@ -11,16 +11,14 @@
     <style>
       @font-face {
         font-family: "ABCDiatype";
-        src: url("/Fonts/ABCDiatype-Regular.otf")
-          format("opentype");
+        src: url("ABCDiatype-Regular.otf") format("opentype");
         font-weight: normal;
         font-style: normal;
       }
 
       @font-face {
         font-family: "ABCDiatypeMono";
-        src: url("/Fonts/ABCDiatypeMono-Regular.otf")
-          format("opentype");
+        src: url("ABCDiatypeMono-Regular.otf") format("opentype");
         font-weight: normal;
         font-style: normal;
       }
@@ -35,63 +33,65 @@
       }
 
       .navbar {
-  font-family: "ABCDiatypeMono", sans-serif;
-  position: fixed;
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  box-sizing: border-box;
-  z-index: 1000;
-}
+        font-family: "ABCDiatypeMono", sans-serif;
+        position: fixed;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 1000;
+      }
 
-.navbar.hidden {
-  display: none;
-}
+      .navbar.hidden {
+        display: none;
+      }
 
-.navbar .logo {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
+      .navbar .logo {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-.navbar .nav-links {
-  display: flex;
-  justify-content: center;
-  flex-grow: 1;
-}
+      .navbar .nav-links {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+      }
 
-.navbar .nav-links a {
-  color: white;
-  text-decoration: none;
-  padding: 0 15px;
-  font-size: 16px;
-}
+      .navbar .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        font-size: 16px;
+      }
 
-.navbar .nav-links a:hover {
-  background-color: orange;
-  color: black;
-}
+      .navbar .nav-links a:hover {
+        background-color: orange;
+        color: black;
+      }
 
-.navbar .search-container {
-  display: flex;
-  align-items: center;
-}
+      .navbar .search-container {
+        display: flex;
+        align-items: center;
+      }
 
-.navbar .search-container input {
-  padding: 5px;
-  font-size: 16px;
-  background-color: transparent;
-}
-
+      .navbar .search-container input {
+        padding: 5px;
+        font-size: 16px;
+        background-color: transparent;
+      }
 
       .text {
         padding: 20px;
-        font-size: 24px;
+        margin-right: 20px;
+        font-size: 20px;
         line-height: 1.5em;
-        overflow-y: scroll;
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: content-box;
       }
 
       .container {
@@ -114,15 +114,15 @@
       .very-large {
         grid-column: span 8;
         grid-row: span 8;
-        width: 100vw; /* Ensure uniform width */
-        height: 100vh; /* Ensure uniform height */
+        width: 100vw;
+        height: 100vh;
       }
 
       .large {
         grid-column: span 4;
         grid-row: span 4;
-        width: 50vw; /* Ensure uniform width */
-        height: 50vh; /* Ensure uniform height */
+        width: calc(50vw - 20px);
+        height: 50vh;
       }
 
       .medium-long {
@@ -353,6 +353,7 @@
       .canvas-container {
         position: relative;
         /* width: 100%; */
+        min-width: 100%;
         min-height: 100vh;
         overflow: hidden;
       }
@@ -366,6 +367,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        min-width: 100%;
         min-height: 100vh;
         object-fit: contain; /* Ensures the image scales while maintaining aspect ratio */
       }
@@ -377,6 +379,7 @@
         /* top: 50%;
         left: 50%;
         transform: translate(-50%, -50%); */
+        min-width: 100%;
         min-height: 100vh;
         max-width: none;
         max-height: none;
@@ -478,8 +481,7 @@
         position: fixed;
         width: 100%;
         height: 200%;
-        background: url("monster01.png")
-          no-repeat;
+        background: url("monster01.png") no-repeat;
         z-index: 1; /* Higher z-index */
         pointer-events: none; /* Allow clicks and scrolls to pass through */
       }
@@ -488,8 +490,7 @@
         position: fixed;
         width: 100%;
         height: 200%;
-        background: url("monster02.png")
-          no-repeat;
+        background: url("monster02.png") no-repeat;
         z-index: 1; /* Higher z-index */
         pointer-events: none; /* Allow clicks and scrolls to pass through */
       }
@@ -1157,10 +1158,8 @@
 
     <div class="container" id="container14">
       <div class="row1">
-        <div class="small">
-        </div>
-        <div class="small">
-        </div>
+        <div class="small"></div>
+        <div class="small"></div>
         <div class="small">
           Sinn Chatreya ate her last burger in a van at the entrance to the
           Balumian Corp. laboratory while she checked the time on her phone,
@@ -1169,7 +1168,7 @@
           equipment, knives, and enough ammunition to kill the entire building's
           staff. Half belonged to a team of professional mercenaries hired in
           the Deep Web. Immortals. The other half were Chatreya's loyal
-          followers: The Ferals.<br><br>
+          followers: The Ferals.<br /><br />
           With her they had participated in a fairly impressive number of
           sit-ins, marches, and protests since she was a fourteen-year-old girl:
           they had faced riot police from several countries (some had lost their
@@ -1183,7 +1182,7 @@
           their increasingly firm belief that the only way to stop their mortal
           enemy (pollution, or capitalism, sometimes even technological
           progress), was through violence. Or at least, “certain types of
-          violence.”<br><br>
+          violence.”<br /><br />
           Chatreya finished the last bite of the burger. She closed her eyes to
           taste the fat, and the sauces and sent a message to Juno Luna.
         </div>
@@ -1207,27 +1206,24 @@
           threatened, all of whom ended up locked in an auditorium under the
           angry yelling of two armed mercenaries. The groups swept through
           rooms, storerooms, conference halls, and individual offices until they
-          found the security room.<br><br>
+          found the security room.<br /><br />
           Despite the planning, the hacking of the surveillance circuit, and
           other details, the police had been informed and were already on their
           way to the scene. They tied up the security officers with ropes and
           gag balls and left them naked in the bathroom. The vault where the
           Nexial Gateway was located was in the heart of the building in a large
           chamber with a very high ceiling, surrounded by instruments that
-          monitored its thermal variations, radioactivity, etc.<br><br>
+          monitored its thermal variations, radioactivity, etc.<br /><br />
           The door burst open, and mercenaries and anarcho-primitivists entered
           pointing their assault rifles, placing themselves in positions that
           had been discussed and planned for months.
         </div>
-        <div class="small">
-        </div>
-        <div class="small">
-        </div>
+        <div class="small"></div>
+        <div class="small"></div>
       </div>
 
       <div class="row2">
-        <div class="small">
-        </div>
+        <div class="small"></div>
         <div class="small">
           Chatreya walked in confidently, still picking food out of her teeth
           with her tongue. She located Juno Luna, with his lab coat and his
@@ -1235,7 +1231,7 @@
           directions, familiarizing herself with everything: the cooling tubes,
           the ultra-fast cameras, microphones, electromagnetism detectors, the
           stairs and emergency exits. With everything under control, she finally
-          approached the Gateway.<br><br>
+          approached the Gateway.<br /><br />
           It was surprisingly small compared to what was seen on the
           international news. Not only images of the machine in operation
           producing the strange blue flower of energy and a lot of circles that
@@ -1288,7 +1284,7 @@
         </div>
         <div class="small">
           —Health and good vision! —She managed to say before the
-          interdimensional phenomenon began.<br><br>
+          interdimensional phenomenon began.<br /><br />
           The discs activated and began to float, lifting Sinn into the air
           before the cameras and the astonished gaze of her fellow activists and
           mercenaries. In the space between Chatreya and the floating disks, a
@@ -1305,8 +1301,7 @@
           numbers, our lady of skins. We have already seen it; PI RU RES has
           appeared in our dreams playing god of death and singing its song.
         </div>
-        <div class="small">
-        </div>
+        <div class="small"></div>
       </div>
 
       <div class="row3">
@@ -1819,83 +1814,351 @@
       </div>
 
       <div class="row9">
-        <div class="small">Fleshy lumps of biological matter grew on my body, vines, roots, and nerves stretched out and grabbed my hands. I struggled in the cockpit, and the mecha began to move irregularly. Something grabbed my leg. As I turned to tear off whatever I had there, another mass clung to the mecha's face. </div>
-        <div class="small">The eidolon that had infected the mecha was taking control of its movement, and taking over the vital systems of the machinery, it even seemed to be rearranging the internal systems, and mechanisms, discarding servomotors or appropriating the thorium reactor. I backed away trying to regain control, using whatever strength I had left in my right hand to hit my bump-infected face with repeated blows, and I tried to tear the tentacles off. </div>
-        <div class="small">The mecha fell to the ground with me inside, together we wallowed in a sea of colorful lichens, surrounded by strange eidolons that looked at me with curiosity. In the deck, the nerves were beginning to connect to my face. I struggled with the vines, splashing bioluminescent liquid, ripping something off just as something else grabbed my arm, or my foot. </div>
-        <div class="small">Nerves, branches, and veins were entering through the holes in my body, I felt them writhing in my genitals, and in my anus, they played with my ears, they grabbed my hands and my face, and they touched my gums and my teeth. And I no longer had the energy to continue the struggle. </div>
-        <div class="small">The robot's intestines were emptied, the internal organs completely removed and exchanged for other things, an arm was torn off, which hurt me immensely and I screamed through the luminous liquid. The infected lymph pumped presentism into my bloodstream. The nerves of my own body began to move inside me, like transparent worms.</div>
-        <div class="small">—Calm down, baby. You don't have to be afraid anymore. Let yourself go.<br><br>
-          There was no point in fighting. I stayed still, breathing heavily, trying not to drown.
-          </div>
-        <div class="small">—Just look around you. Think about the places you have traveled on this planet and tell me if it would be best to build a shopping mall here, or a company where people must work for eight hours every day, and garbage over there. That's what the diaspora wants. No?</div>
-        <div class="small">When I opened my eyes, the eidolon that was my mother was lulling me to sleep.<br><br>
+        <div class="small">
+          Fleshy lumps of biological matter grew on my body, vines, roots, and
+          nerves stretched out and grabbed my hands. I struggled in the cockpit,
+          and the mecha began to move irregularly. Something grabbed my leg. As
+          I turned to tear off whatever I had there, another mass clung to the
+          mecha's face.
+        </div>
+        <div class="small">
+          The eidolon that had infected the mecha was taking control of its
+          movement, and taking over the vital systems of the machinery, it even
+          seemed to be rearranging the internal systems, and mechanisms,
+          discarding servomotors or appropriating the thorium reactor. I backed
+          away trying to regain control, using whatever strength I had left in
+          my right hand to hit my bump-infected face with repeated blows, and I
+          tried to tear the tentacles off.
+        </div>
+        <div class="small">
+          The mecha fell to the ground with me inside, together we wallowed in a
+          sea of colorful lichens, surrounded by strange eidolons that looked at
+          me with curiosity. In the deck, the nerves were beginning to connect
+          to my face. I struggled with the vines, splashing bioluminescent
+          liquid, ripping something off just as something else grabbed my arm,
+          or my foot.
+        </div>
+        <div class="small">
+          Nerves, branches, and veins were entering through the holes in my
+          body, I felt them writhing in my genitals, and in my anus, they played
+          with my ears, they grabbed my hands and my face, and they touched my
+          gums and my teeth. And I no longer had the energy to continue the
+          struggle.
+        </div>
+        <div class="small">
+          The robot's intestines were emptied, the internal organs completely
+          removed and exchanged for other things, an arm was torn off, which
+          hurt me immensely and I screamed through the luminous liquid. The
+          infected lymph pumped presentism into my bloodstream. The nerves of my
+          own body began to move inside me, like transparent worms.
+        </div>
+        <div class="small">
+          —Calm down, baby. You don't have to be afraid anymore. Let yourself
+          go.<br /><br />
+          There was no point in fighting. I stayed still, breathing heavily,
+          trying not to drown.
+        </div>
+        <div class="small">
+          —Just look around you. Think about the places you have traveled on
+          this planet and tell me if it would be best to build a shopping mall
+          here, or a company where people must work for eight hours every day,
+          and garbage over there. That's what the diaspora wants. No?
+        </div>
+        <div class="small">
+          When I opened my eyes, the eidolon that was my mother was lulling me
+          to sleep.<br /><br />
           —Open your nerves, — she whispered in my mind.
-          </div>
+        </div>
       </div>
 
       <div class="row10">
-        <div class="small">As if it were a basic human technique or movement that I had completely forgotten, I moved something inside my body, like the way your throat moves or that secret muscle in your inner ear. Then my nerves began to push their way out of my body. It wasn't painful. The nerves spread out of my face, out of my hands and my legs, growing gently like a little plant. </div>
-        <div class="small">Maybe I didn't care much about my own body anymore. Maybe I didn't care much about my own life anymore. I could only feel the granular pleasure of living in the present. My body expanded from being a tiny thing, occupying the entire size of the pilot capsule, joining with cancerous lumps, igneous fungi, mystical organs, stomachs and esophagus of beings from other dimensions until I became my own mecha. </div>
-        <div class="small">The “I” became the monster. It became clear that the eidolons, the extraterrestrials, were made of thousands of people who had attached themselves at some point to an alien core more or less voluntarily. Humanity was evolving into something new. A symbiogenesis in which aliens and we were a new type of life form, just like mitochondria and single cells had become eukaryotes; evolutionary changes were happening rapidly, and we would soon become new thousands of living beings.</div>
-        <div class="small">Bubbly minds greeted me: people who decades ago would have identified as Colombian or Australian, male or female, now seemed more like shapeless masses of light. They had not thereby lost their individuality, nor did they completely coexist as a single being, or an almost theological entity. Rather they existed in a stream of consciousness between being one and being multitudes.</div>
-        <div class="small">I felt Mom's hug, and Dad's hug. Only they were no longer hugs, but hot nodes of nerves clinging and squeezing each other, exchanging telepathic information. And I felt the love they had for Peter. They missed him, they wanted to have settled that dispute in a hug and love. But Peter was not prepared to leave behind his middle-class life with a good salary. It seemed too radical to end the sources of air pollution because he liked to travel by plane, he was an Apple fan and he dreamed of buying a Tesla that could drive itself.</div>
-        <div class="small">When I opened my eyes, I no longer saw like a human, with two frontal eyes facing a single direction. There were tiny clusters of eyes that covered my entire body, giving me vision much more complicated than stereoscopic vision.</div>
-        <div class="small">There's no future. I stand in my hundred-meter height, noticing that I have lost the limits that make up the anthropomorphic figure of the robot. Metallic parts fall thunderously like shells while my limbs multiply. I look one last time at the Nexial Gateway. I can spend hours looking at it, exploring every detail, smelling every detail. It is an endless abyss, I can delve and delve and delve into the present, one thought leads to another, and another. And every thought is the present itself. </div>
-        <div class="small">I feel waves of pleasure, pulling tendons somewhere in my neck and legs. I am perfectly aware of my nervous system, every sensation deserves to be explored. If I prefer, I can also explore my own emotions with the same psychedelic concentration; I can immerse myself in my ideas, my concepts, my fears. I can communicate them to others without the anxiety of the future, and we can, together, analyze and understand each other. The aliens, who have become our backbones, seem to orchestrate in-person activities. Dances? Games? Do you walk to distant places to delight in what exists?</div>
+        <div class="small">
+          As if it were a basic human technique or movement that I had
+          completely forgotten, I moved something inside my body, like the way
+          your throat moves or that secret muscle in your inner ear. Then my
+          nerves began to push their way out of my body. It wasn't painful. The
+          nerves spread out of my face, out of my hands and my legs, growing
+          gently like a little plant.
+        </div>
+        <div class="small">
+          Maybe I didn't care much about my own body anymore. Maybe I didn't
+          care much about my own life anymore. I could only feel the granular
+          pleasure of living in the present. My body expanded from being a tiny
+          thing, occupying the entire size of the pilot capsule, joining with
+          cancerous lumps, igneous fungi, mystical organs, stomachs and
+          esophagus of beings from other dimensions until I became my own mecha.
+        </div>
+        <div class="small">
+          The “I” became the monster. It became clear that the eidolons, the
+          extraterrestrials, were made of thousands of people who had attached
+          themselves at some point to an alien core more or less voluntarily.
+          Humanity was evolving into something new. A symbiogenesis in which
+          aliens and we were a new type of life form, just like mitochondria and
+          single cells had become eukaryotes; evolutionary changes were
+          happening rapidly, and we would soon become new thousands of living
+          beings.
+        </div>
+        <div class="small">
+          Bubbly minds greeted me: people who decades ago would have identified
+          as Colombian or Australian, male or female, now seemed more like
+          shapeless masses of light. They had not thereby lost their
+          individuality, nor did they completely coexist as a single being, or
+          an almost theological entity. Rather they existed in a stream of
+          consciousness between being one and being multitudes.
+        </div>
+        <div class="small">
+          I felt Mom's hug, and Dad's hug. Only they were no longer hugs, but
+          hot nodes of nerves clinging and squeezing each other, exchanging
+          telepathic information. And I felt the love they had for Peter. They
+          missed him, they wanted to have settled that dispute in a hug and
+          love. But Peter was not prepared to leave behind his middle-class life
+          with a good salary. It seemed too radical to end the sources of air
+          pollution because he liked to travel by plane, he was an Apple fan and
+          he dreamed of buying a Tesla that could drive itself.
+        </div>
+        <div class="small">
+          When I opened my eyes, I no longer saw like a human, with two frontal
+          eyes facing a single direction. There were tiny clusters of eyes that
+          covered my entire body, giving me vision much more complicated than
+          stereoscopic vision.
+        </div>
+        <div class="small">
+          There's no future. I stand in my hundred-meter height, noticing that I
+          have lost the limits that make up the anthropomorphic figure of the
+          robot. Metallic parts fall thunderously like shells while my limbs
+          multiply. I look one last time at the Nexial Gateway. I can spend
+          hours looking at it, exploring every detail, smelling every detail. It
+          is an endless abyss, I can delve and delve and delve into the present,
+          one thought leads to another, and another. And every thought is the
+          present itself.
+        </div>
+        <div class="small">
+          I feel waves of pleasure, pulling tendons somewhere in my neck and
+          legs. I am perfectly aware of my nervous system, every sensation
+          deserves to be explored. If I prefer, I can also explore my own
+          emotions with the same psychedelic concentration; I can immerse myself
+          in my ideas, my concepts, my fears. I can communicate them to others
+          without the anxiety of the future, and we can, together, analyze and
+          understand each other. The aliens, who have become our backbones, seem
+          to orchestrate in-person activities. Dances? Games? Do you walk to
+          distant places to delight in what exists?
+        </div>
       </div>
 
       <div class="row11">
-        <div class="small">When I think that that's it, that what remains of the rest of my existence is summarized in wandering aimlessly through the immensity of the planet (which is quite a lot considering that we could spend eternity watching how the clouds or the water move), I discover new ways of existing.</div>
-        <div class="small">I have lived for (months?) wandering between jungles and continents, coming across ruins of human cities by surprise, curiously observing small windows towards individual rooms, ruined stairs, and static cars among the greenery. I hear stories from those who lived there, part of the immense network system. I take strides across the ocean and am amazed by volcanoes, I dive and swim, I cross a desert, a wasteland, a medieval citadel.</div>
-        <div class="small">When I remember again that there was such a thing as a “Nexial gate”. An alien prepares me for my first jump.</div>
-        <div class="small">—Maybe you don't notice it, but you have a Nexial gate inside you. We all have a machine capable of crossing intergalactic distances in consciousness. Consciousness itself is an intergalactic portal.</div>
-        <div class="small">A group of eidolons perform the necessary steps of a small dance or ritual. Torrents of dimethyltryptamine activate tunnels, surrounded by petals of light. The doors between worlds open like flowers. We can explore other maps, sometimes we cross them without realizing it while appreciating the shape of a fish. </div>
-        <div class="small">That's what it was about all along. To expand the exploration platforms, and wander in the tides of the present. Walk without waiting for a destination, create without thinking of the result, live without thinking about death, success, growth, development, progress, profits, the future, old age, tomorrow, a better tomorrow, or a worse yesterday, there is no past, there is no beginning, there are no centuries before Christ, there is no remote prehistoric world. There is only the now. The present is this phrase. This phrase. This phrase.</div>
-        <div class="small">So I crossed to Valtiklar, without realizing it. I have always been in Valtiklar, we are the very elves of DMT, and we walk through worlds more fluorescent than Earth. I am now on Zumia Exis. It's a mostly yellow world, and we are surrounded by shifting polygons that are siblings, friends, mothers, or a reflective mirror of ourselves. </div>
-        <div class="small">Aliens from various universes have flooded the Earth, but we have also invaded theirs. I learn to become a polygon. You have always been a geometric solid. Learn to fractalize yourself, factor yourself by a prime number. I am in a world where the concept of food does not exist. I'm living in a planetary stomach. I am in a ship of neon technology and the gods teach me to fragment myself, to reorganize myself. All this, of course, upholstered in repetitions of the manual to create a Nexial door, to help others reach the same top development, the omega point of galactic civilization.</div>
+        <div class="small">
+          When I think that that's it, that what remains of the rest of my
+          existence is summarized in wandering aimlessly through the immensity
+          of the planet (which is quite a lot considering that we could spend
+          eternity watching how the clouds or the water move), I discover new
+          ways of existing.
+        </div>
+        <div class="small">
+          I have lived for (months?) wandering between jungles and continents,
+          coming across ruins of human cities by surprise, curiously observing
+          small windows towards individual rooms, ruined stairs, and static cars
+          among the greenery. I hear stories from those who lived there, part of
+          the immense network system. I take strides across the ocean and am
+          amazed by volcanoes, I dive and swim, I cross a desert, a wasteland, a
+          medieval citadel.
+        </div>
+        <div class="small">
+          When I remember again that there was such a thing as a “Nexial gate”.
+          An alien prepares me for my first jump.
+        </div>
+        <div class="small">
+          —Maybe you don't notice it, but you have a Nexial gate inside you. We
+          all have a machine capable of crossing intergalactic distances in
+          consciousness. Consciousness itself is an intergalactic portal.
+        </div>
+        <div class="small">
+          A group of eidolons perform the necessary steps of a small dance or
+          ritual. Torrents of dimethyltryptamine activate tunnels, surrounded by
+          petals of light. The doors between worlds open like flowers. We can
+          explore other maps, sometimes we cross them without realizing it while
+          appreciating the shape of a fish.
+        </div>
+        <div class="small">
+          That's what it was about all along. To expand the exploration
+          platforms, and wander in the tides of the present. Walk without
+          waiting for a destination, create without thinking of the result, live
+          without thinking about death, success, growth, development, progress,
+          profits, the future, old age, tomorrow, a better tomorrow, or a worse
+          yesterday, there is no past, there is no beginning, there are no
+          centuries before Christ, there is no remote prehistoric world. There
+          is only the now. The present is this phrase. This phrase. This phrase.
+        </div>
+        <div class="small">
+          So I crossed to Valtiklar, without realizing it. I have always been in
+          Valtiklar, we are the very elves of DMT, and we walk through worlds
+          more fluorescent than Earth. I am now on Zumia Exis. It's a mostly
+          yellow world, and we are surrounded by shifting polygons that are
+          siblings, friends, mothers, or a reflective mirror of ourselves.
+        </div>
+        <div class="small">
+          Aliens from various universes have flooded the Earth, but we have also
+          invaded theirs. I learn to become a polygon. You have always been a
+          geometric solid. Learn to fractalize yourself, factor yourself by a
+          prime number. I am in a world where the concept of food does not
+          exist. I'm living in a planetary stomach. I am in a ship of neon
+          technology and the gods teach me to fragment myself, to reorganize
+          myself. All this, of course, upholstered in repetitions of the manual
+          to create a Nexial door, to help others reach the same top
+          development, the omega point of galactic civilization.
+        </div>
       </div>
 
       <div class="row12">
-        <div class="small">I see a human entering Plocomia 11. He has entered with a neon suit. He's high on Dimethyltryptamine. There are several of us who see him, amazed at the changing tides of mandelbulbs, of self-replicating figures, fractaloids that implode cyclically, several of us want to greet him.</div>
-        <div class="small">—Peter?<br><br>
-          But Peter doesn't understand me. I can hardly tell you how happy I am to see you.
-          </div>
-        <div class="small">—Peter. I miss you a lot. I want to show you all the hyper toys we have here.<br><br>
-          Peter seems to recognize me. Maybe? Maybe he can see me? Maybe he's here to transcribe the manual. If he manages to build a Nexial gate again he could come with me permanently. I will show you the code. I open polygonal hyper-signifiers, transparent objects full of code. Copy it fast, Pete, come meet me soon.
-          </div>
-        <div class="small">—I'm glad you managed to integrate. —He seems to want to hug me.<br><br>
-          I jump inside his holographic body, trying to show him my love, I take him by the hand through the immense geographies of Aktum. Peter, Peter, I miss you. I love you. Why don't you come with us. He seemed to want to say goodbye. Then he explained in his human language that he had to leave now and just wanted to make sure I was okay. Immediately he became a ball of light that streaked the sky of Aktum.
-          </div>
-        <div class="small">—No one tells you what happens with Peter? —an electric blue eidolon who saw everything from afar asked me.<br><br>
+        <div class="small">
+          I see a human entering Plocomia 11. He has entered with a neon suit.
+          He's high on Dimethyltryptamine. There are several of us who see him,
+          amazed at the changing tides of mandelbulbs, of self-replicating
+          figures, fractaloids that implode cyclically, several of us want to
+          greet him.
+        </div>
+        <div class="small">
+          —Peter?<br /><br />
+          But Peter doesn't understand me. I can hardly tell you how happy I am
+          to see you.
+        </div>
+        <div class="small">
+          —Peter. I miss you a lot. I want to show you all the hyper toys we
+          have here.<br /><br />
+          Peter seems to recognize me. Maybe? Maybe he can see me? Maybe he's
+          here to transcribe the manual. If he manages to build a Nexial gate
+          again he could come with me permanently. I will show you the code. I
+          open polygonal hyper-signifiers, transparent objects full of code.
+          Copy it fast, Pete, come meet me soon.
+        </div>
+        <div class="small">
+          —I'm glad you managed to integrate. —He seems to want to hug me.<br /><br />
+          I jump inside his holographic body, trying to show him my love, I take
+          him by the hand through the immense geographies of Aktum. Peter,
+          Peter, I miss you. I love you. Why don't you come with us. He seemed
+          to want to say goodbye. Then he explained in his human language that
+          he had to leave now and just wanted to make sure I was okay.
+          Immediately he became a ball of light that streaked the sky of Aktum.
+        </div>
+        <div class="small">
+          —No one tells you what happens with Peter? —an electric blue eidolon
+          who saw everything from afar asked me.<br /><br />
           —No one tells.
-          </div>
-        <div class="small">—Peter doesn't want the regular human way of life to disappear. He believes that there is intrinsic value in individual experience and that perhaps in something they call “the future” they find another way to develop their civilization without all the destruction. There is a pact. A pact between him and us.</div>
-        <div class="small">When the Nexial Wars are nearing their end, Peter Yao is having a DMT ritual. In it he is addressing us, and asking us to stop the humans from taking the Nexial Gate into space. Why do humans want that? Agh, they're stupid. </div>
-        <div class="small">They think they can bring warmonger eidolons from the Salvia Divinorum to fight a new round of Nexial wars. Nobody believes him in the space colonies, but it is true. If they take the door to the Diaspora, what remains of humanity is also the present. We accept. That's why we don't let them take the Gateway. To honor Peter Yao. That's why Eidolons fight on Earth against giant robots.</div>
+        </div>
+        <div class="small">
+          —Peter doesn't want the regular human way of life to disappear. He
+          believes that there is intrinsic value in individual experience and
+          that perhaps in something they call “the future” they find another way
+          to develop their civilization without all the destruction. There is a
+          pact. A pact between him and us.
+        </div>
+        <div class="small">
+          When the Nexial Wars are nearing their end, Peter Yao is having a DMT
+          ritual. In it he is addressing us, and asking us to stop the humans
+          from taking the Nexial Gate into space. Why do humans want that? Agh,
+          they're stupid.
+        </div>
+        <div class="small">
+          They think they can bring warmonger eidolons from the Salvia Divinorum
+          to fight a new round of Nexial wars. Nobody believes him in the space
+          colonies, but it is true. If they take the door to the Diaspora, what
+          remains of humanity is also the present. We accept. That's why we
+          don't let them take the Gateway. To honor Peter Yao. That's why
+          Eidolons fight on Earth against giant robots.
+        </div>
       </div>
 
-    <div class="row13">
-      <div class="small">—But then why does he want to make me fight on Earth? </div>
-      <div class="small">—Because I'm feeling guilty. He is stealing you from your parents. Your parents ask many times to return you, and he wants to return you. In dreams, on DMT or ayahuasca surfing mode. He knows you can be integrated in symbiogenesis and be happy.</div>
-      <div class="small">Lined up, pressed against the windows of the observation deck in the smelly and dilapidated space station where I grew up, the history teacher forced us to take a good look at “the green and blue beauty of Planet Earth” surrounded by hundreds of other space stations like ours, entire countries made of steel and ugly solar panels that looked like space garbage.</div>
-      <div class="small">The teacher and others repeated it to us every chance they could, with resentment, fear, and hunger: “Take a good look at where we come from, and where we need to return to. Those cursed fundamentalists expelled us from paradise. That's where the resources are! The minerals, the trees, and life itself. “You can't even imagine how beautiful those landscapes are.” Then we would return to class in a sad line, to talk, as usual, about the Nexial Wars for control of the gate.</div>
-      <div class="small">After classes, I returned, through the compartments of the central hallway, to my father's room. Like many, Peter Yao was a fallen man in the pandemic of mental health; it was I who had to feed him and take care of him. I forced him to bathe, to continue his little routines, and brush his teeth. He was tormented by those he left, especially Juno and Nafisa; my other parents, according to what he told me. </div>
-      <div class="small">Dad had been a science celebrity, he even kept the articles that had been written about his work. However, after the great migration, he began a process of degeneration, in which he barely managed to raise me, but by the time I was fifteen, the role had been completely reversed. </div>
-      <div class="small">During much of that time, he had tried to convince the authorities not to attack Earth. He spoke ill of the Columbian-Fluxus program, which had been sold to the public as the only way to effectively combat aliens and re-take our land, by building giant robots in space from cloned eidolons; but he fought even harder to stop them from bringing the Nexial Gate to the space stations of the diaspora. </div>
-      <div class="small">Nobody paid attention to him, the scientific authorities were sure that they could use the door to bring beings from other dimensions, perhaps some more malevolent, like the demons found during bad trips with anticholinergics like datura or DMX, dark lords from the crystal meth universe, or the gods of the Salvia; entities or cosmic jesters, which, scientists believed, we could instrumentalize to produce a new Nexial war between gods from different worlds to re-colonize Earth.</div>
-    </div>
+      <div class="row13">
+        <div class="small">
+          —But then why does he want to make me fight on Earth?
+        </div>
+        <div class="small">
+          —Because I'm feeling guilty. He is stealing you from your parents.
+          Your parents ask many times to return you, and he wants to return you.
+          In dreams, on DMT or ayahuasca surfing mode. He knows you can be
+          integrated in symbiogenesis and be happy.
+        </div>
+        <div class="small">
+          Lined up, pressed against the windows of the observation deck in the
+          smelly and dilapidated space station where I grew up, the history
+          teacher forced us to take a good look at “the green and blue beauty of
+          Planet Earth” surrounded by hundreds of other space stations like
+          ours, entire countries made of steel and ugly solar panels that looked
+          like space garbage.
+        </div>
+        <div class="small">
+          The teacher and others repeated it to us every chance they could, with
+          resentment, fear, and hunger: “Take a good look at where we come from,
+          and where we need to return to. Those cursed fundamentalists expelled
+          us from paradise. That's where the resources are! The minerals, the
+          trees, and life itself. “You can't even imagine how beautiful those
+          landscapes are.” Then we would return to class in a sad line, to talk,
+          as usual, about the Nexial Wars for control of the gate.
+        </div>
+        <div class="small">
+          After classes, I returned, through the compartments of the central
+          hallway, to my father's room. Like many, Peter Yao was a fallen man in
+          the pandemic of mental health; it was I who had to feed him and take
+          care of him. I forced him to bathe, to continue his little routines,
+          and brush his teeth. He was tormented by those he left, especially
+          Juno and Nafisa; my other parents, according to what he told me.
+        </div>
+        <div class="small">
+          Dad had been a science celebrity, he even kept the articles that had
+          been written about his work. However, after the great migration, he
+          began a process of degeneration, in which he barely managed to raise
+          me, but by the time I was fifteen, the role had been completely
+          reversed.
+        </div>
+        <div class="small">
+          During much of that time, he had tried to convince the authorities not
+          to attack Earth. He spoke ill of the Columbian-Fluxus program, which
+          had been sold to the public as the only way to effectively combat
+          aliens and re-take our land, by building giant robots in space from
+          cloned eidolons; but he fought even harder to stop them from bringing
+          the Nexial Gate to the space stations of the diaspora.
+        </div>
+        <div class="small">
+          Nobody paid attention to him, the scientific authorities were sure
+          that they could use the door to bring beings from other dimensions,
+          perhaps some more malevolent, like the demons found during bad trips
+          with anticholinergics like datura or DMX, dark lords from the crystal
+          meth universe, or the gods of the Salvia; entities or cosmic jesters,
+          which, scientists believed, we could instrumentalize to produce a new
+          Nexial war between gods from different worlds to re-colonize Earth.
+        </div>
+      </div>
 
-    <div class="row14">
-      <div class="small">When I confessed to Peter that I wanted to enlist in the Columbian-Fluxus program, he looked at me with some sadness, and he did mention Juno and Nafisa.</div>
-      <div class="small">He had told me how both were killed by the Ferals during the war, and only with luck had he been able to rescue me during the expansion of the dreamsphere; perhaps it made sense to seek revenge.</div>
-      <div class="small">He didn't say much more, but he also didn't ask me not to. </div>
-      <div class="small">Maybe he knew something else.</div>
-      <div class="small">Sometimes he would inject DMT in his room and wouldn't tell me what he had seen. </div>
-      <div class="small">I finally said goodbye to him, got into the military program, and got pretty good at synchronization in the mind-machine coupler.</div>
-      <div class="small">Grown into a man, with muscles and all, papa Yao hugged me one last time before I was sent to my first mission and said in a strange voice of mental illness:</div>
-      <div class="small">“If you ever see them, tell them I miss them.”</div>
+      <div class="row14">
+        <div class="small">
+          When I confessed to Peter that I wanted to enlist in the
+          Columbian-Fluxus program, he looked at me with some sadness, and he
+          did mention Juno and Nafisa.
+        </div>
+        <div class="small">
+          He had told me how both were killed by the Ferals during the war, and
+          only with luck had he been able to rescue me during the expansion of
+          the dreamsphere; perhaps it made sense to seek revenge.
+        </div>
+        <div class="small">
+          He didn't say much more, but he also didn't ask me not to.
+        </div>
+        <div class="small">Maybe he knew something else.</div>
+        <div class="small">
+          Sometimes he would inject DMT in his room and wouldn't tell me what he
+          had seen.
+        </div>
+        <div class="small">
+          I finally said goodbye to him, got into the military program, and got
+          pretty good at synchronization in the mind-machine coupler.
+        </div>
+        <div class="small">
+          Grown into a man, with muscles and all, papa Yao hugged me one last
+          time before I was sent to my first mission and said in a strange voice
+          of mental illness:
+        </div>
+        <div class="small">“If you ever see them, tell them I miss them.”</div>
+      </div>
     </div>
-  </div>
 
     <!-- THE REST -->
 
@@ -2103,35 +2366,35 @@
       </div>
     </div> -->
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const navbar = document.querySelector('.navbar');
-  const canvasContainer = document.getElementById('canvasContainer2');
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+        const canvasContainer = document.getElementById("canvasContainer2");
 
-  const observerOptions = {
-    root: null,
-    threshold: 0
-  };
+        const observerOptions = {
+          root: null,
+          threshold: 0,
+        };
 
-  const observerCallback = (entries) => {
-    entries.forEach(entry => {
-      if (entry.target.id === 'canvasContainer2') {
-        if (entry.isIntersecting) {
-          navbar.classList.remove('hidden');
-        } else {
-          navbar.classList.add('hidden');
-        }
-      }
-    });
-  };
+        const observerCallback = (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target.id === "canvasContainer2") {
+              if (entry.isIntersecting) {
+                navbar.classList.remove("hidden");
+              } else {
+                navbar.classList.add("hidden");
+              }
+            }
+          });
+        };
 
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-  observer.observe(canvasContainer);
-});
-
-
-</script>
-    
+        const observer = new IntersectionObserver(
+          observerCallback,
+          observerOptions
+        );
+        observer.observe(canvasContainer);
+      });
+    </script>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -2679,19 +2942,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         Array.from(rows).forEach((row, rowIndex) => {
-  const scaleFactor = 1 + (rowIndex / (totalRows - 1)) * (maxScale - 1);
-  const divs = row.children;
-  const divCount = divs.length;
+          const scaleFactor = 1 + (rowIndex / (totalRows - 1)) * (maxScale - 1);
+          const divs = row.children;
+          const divCount = divs.length;
 
-  const opacity = rowIndex / (totalRows - 1); // Calculate opacity based on row index
-  row.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`; // Set background color with calculated opacity
+          const opacity = rowIndex / (totalRows - 1); // Calculate opacity based on row index
+          row.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`; // Set background color with calculated opacity
 
-  Array.from(divs).forEach((div) => {
-    div.style.transform = `scaleX(${scaleFactor})`;
-    div.style.transformOrigin = "center";
-    div.style.flexBasis = `${100 / divCount}%`;
-  });
-});
+          Array.from(divs).forEach((div) => {
+            div.style.transform = `scaleX(${scaleFactor})`;
+            div.style.transformOrigin = "center";
+            div.style.flexBasis = `${100 / divCount}%`;
+          });
+        });
 
         replaceButton.addEventListener("click", function () {
           if (!isReplaced) {
