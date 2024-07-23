@@ -23,6 +23,18 @@
         font-style: normal;
       }
 
+      @media (min-width: 600px) {
+        html {
+          font-size: 2vw;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        html {
+          font-size: 1.5vw;
+        }
+      }
+
       body,
       html {
         margin: 0;
@@ -64,12 +76,14 @@
       .navbar .nav-links a {
         color: white;
         text-decoration: none;
-        padding: 0 15px;
+        padding: 10px;
         font-size: 16px;
       }
 
       .navbar .nav-links a:hover {
         background-color: orange;
+        padding: 10px;
+        border-radius: 10px;
         color: black;
       }
 
@@ -84,10 +98,32 @@
         background-color: transparent;
       }
 
+      .nametag {
+  display: inline-block;
+  background-color: orange;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  line-height: normal; /* Ensure normal line height */
+  vertical-align: middle; /* Aligns the nametag with the text */
+}
+
+
+
+      .nametag2 {
+        display: inline-block;
+        background-color: dodgerblue;
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        line-height: normal; /* Ensure normal line height */
+  vertical-align: middle; /* Aligns the nametag with the text */
+      }
+
       .text {
         padding: 20px;
         margin-right: 20px;
-        font-size: 20px;
         line-height: 1.5em;
         overflow-y: auto;
         overflow-x: hidden;
@@ -396,7 +432,7 @@
       }
 
       #randomizeFont {
-        background-color: DodgerBlue;
+        background-color: dodgerblue;
         border: none;
         color: white;
         padding: 12px 30px;
@@ -405,11 +441,11 @@
       }
 
       #randomizeFont:hover {
-        background-color: RoyalBlue;
+        background-color: royalblue;
       }
 
       #resetFont {
-        background-color: DodgerBlue;
+        background-color: dodgerblue;
         border: none;
         color: white;
         padding: 12px 30px;
@@ -418,7 +454,7 @@
       }
 
       #resetFont:hover {
-        background-color: RoyalBlue;
+        background-color: royalblue;
       }
 
       .center-buttons {
@@ -717,9 +753,9 @@
           <input type="range" min="1" max="10" value="5" class="speedSlider" />
           <input type="range" min="1" max="10" value="6" class="speedSlider" />
           <input type="range" min="1" max="10" value="7" class="speedSlider" />
-          <input type="range" min="1" max="10" value="8" class="speedSlider" />
+          <!-- <input type="range" min="1" max="10" value="8" class="speedSlider" />
           <input type="range" min="1" max="10" value="9" class="speedSlider" />
-          <input type="range" min="1" max="10" value="10" class="speedSlider" />
+          <input type="range" min="1" max="10" value="10" class="speedSlider" /> -->
         </div>
       </div>
       <div class="medium"></div>
@@ -789,29 +825,37 @@
         mode in five, four, three, two, one.
       </div>
       <div class="large text">
-        Lieutenant (from the space station): Any signs of movement?<br /><br />
-        Captain Benítez: Negative, sir. It's eerily still, but its presence...
-        It's unsettling. <br /><br />
-        Sánchez: Luna. Think it'll attack if we make a move? <br /><br />
-        Kai Luna (that's me): Hard to tell. Maybe best to observe from a
-        distance. The radiation's messing with my head, makes me feel like I'm
-        something else. Or someone else. <br /><br />
-        Lieutenant (from the orbiting base): Extraction team's down. Leuktra
-        division's moving in from the north. Your mission: recover the Nexial
-        Gate. No compromises.<br /><br />
-        Captain Benítez: Roger that. PIZARRO, MAGELLAN let's advance cautiously.
-        Sync at 45 percent. Energy levels up in three. Activate battle shields
-        on the sides. Attack mode in five, four, three, two, one. <br /><br />
-        Kai Luna: Locked and loaded, sir.<br /><br />
-        Sánchez: Ready to roll, sir.<br /><br />
-        Captain Benítez: Lieutenant, we're poised. Permission to engage.<br /><br />
-        Lieutenant (from the orbiting base): Hold your horses, Benítez. I see
-        the eagerness. Take a breath. Precision, that's what we need. You're
-        handling machinery worth more than some nations' GDPs. Let's not get
-        reckless.<br /><br />
-        Kai Luna: Things are getting weird. Feels like we're tripping. I suppose
-        it's just the dreamsphere, but I thought our caskets would protect us
-        from it.
+        <div class="nametag">Lieutenant (from the space station)</div>
+        Any signs of movement?<br /><br />
+        <div class="nametag">Captain Benítez</div>
+        Negative, sir. It's eerily still, but its presence... It's unsettling.
+        <br /><br />
+        <div class="nametag">Sánchez</div>
+        Luna. Think it'll attack if we make a move? <br /><br />
+        <div class="nametag">Kai Luna (that's me)</div>
+        Hard to tell. Maybe best to observe from a distance. The radiation's
+        messing with my head, makes me feel like I'm something else. Or someone
+        else. <br /><br />
+        <div class="nametag">Lieutenant (from the orbiting base)</div>
+        Extraction team's down. Leuktra division's moving in from the north.
+        Your mission: recover the Nexial Gate. No compromises.<br /><br />
+        <div class="nametag">Captain Benítez</div>
+        Roger that. PIZARRO, MAGELLAN let's advance cautiously. Sync at 45
+        percent. Energy levels up in three. Activate battle shields on the
+        sides. Attack mode in five, four, three, two, one. <br /><br />
+        <div class="nametag">Kai Luna</div>
+        Locked and loaded, sir.<br /><br />
+        <div class="nametag">Sánchez</div>
+        Ready to roll, sir.<br /><br />
+        <div class="nametag">Captain Benítez</div>
+        Lieutenant, we're poised. Permission to engage.<br /><br />
+        <div class="nametag">Lieutenant (from the orbiting base)</div>
+        Hold your horses, Benítez. I see the eagerness. Take a breath.
+        Precision, that's what we need. You're handling machinery worth more
+        than some nations' GDPs. Let's not get reckless.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Things are getting weird. Feels like we're tripping. I suppose it's just
+        the dreamsphere, but I thought our caskets would protect us from it.
       </div>
       <div class="large scrollbar-target-vertical"></div>
       <div class="large"></div>
@@ -831,8 +875,10 @@
         döppelganger in the back of the mind.
       </div>
       <div class="medium-long text">
-        Sánchez: The scenery though. What a blast, huh?<br /><br />
-        Kai Luna: Breathtaking.
+        <div class="nametag">Sánchez</div>
+        The scenery though. What a blast, huh?<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Breathtaking.
       </div>
       <div class="medium-long"></div>
       <div class="large text">
@@ -847,14 +893,19 @@
         waiting for it to heal me, to transform me.
       </div>
       <div class="medium-long text">
-        Sánchez: Breathtaking is an understatement. It's like our parents'
-        stories come to life.<br /><br />
-        Kai Luna: I didn't imagine the colors were so vivid. Your folks would've
-        loved this. Ugh and gravity is killing me.<br /><br />
-        Sánchez: Well, this is what our parents saw every day, huh? Your
-        parents, Kai. They're with us. Think about it. What a privilege.<br /><br />
-        Lieutenant: Proceed, Captain.<br /><br />
-        Captain Benítez: MAGELLAN, GAMA. Open fire!
+        <div class="nametag">Sánchez</div>
+        Breathtaking is an understatement. It's like our parents' stories come
+        to life.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        I didn't imagine the colors were so vivid. Your folks would've loved
+        this. Ugh and gravity is killing me.<br /><br />
+        <div class="nametag">Sánchez</div>
+        Well, this is what our parents saw every day, huh? Your parents, Kai.
+        They're with us. Think about it. What a privilege.<br /><br />
+        <div class="nametag">Lieutenant</div>
+        Proceed, Captain.<br /><br />
+        <div class="nametag">Captain Benítez</div>
+        MAGELLAN, GAMA. Open fire!
       </div>
       <div class="medium-long scrollbar-target-vertical"></div>
     </div>
@@ -887,15 +938,18 @@
         lizard, disarticulating and rearming itself to avoid the projectiles,
         twisting in a second, spinning, opening. Nothing human or biological on
         the entire Earth moves that way.<br /><br />
-        Sánchez: Watch it, friendly fire! Friendly fire!<br /><br />
+        <div class="nametag">Sánchez</div>
+        Watch it, friendly fire! Friendly fire!<br /><br />
         The colossus danced, redirecting the bullets toward us at high speed so
         that we were forced to move quickly to avoid shooting at each other.
         Other eidolons had done the same. They had learned and each one was
         smarter than the last.<br /><br />
-        Captain Benítez: The motherfucker's deflecting shots back at us.<br /><br />
+        <div class="nametag">Captain Benítez</div>
+        The motherfucker's deflecting shots back at us.<br /><br />
         Lieutenant (from orbiting base): I detect some heat signatures from the
         target. Try a guided missile.<br /><br />
-        Captain Benítez: Roger. Fire!
+        <div class="nametag">Captain Benítez</div>
+        Roger. Fire!
       </div>
       <div class="large text">
         The kaiju detected the missile, it was as if it turned to see it in slow
@@ -905,16 +959,21 @@
         brushed past the monster and changed direction for a few degrees looking
         for the nearest heat source and hitting Pizarro. We all saw the
         explosion.<br /><br />
-        Kai Luna: You bitch! Sánchez, are you okay?<br /><br />
-        Captain Benítez: Sánchez, do you copy? <br /><br />
-        Sánchez: Lost an arm, sir. Damn.<br /><br />
-        Lieutenant (from orbiting base): No hits, no damage? What is this shitty
-        operation, Captain?<br /><br />
-        Kai Luna: We don't know the weaknesses, sir. <br /><br />
-        I defended the column, but they would easily reprimand me for
-        mediocrity.<br /><br />
-        Lieutenant: Plasma beam! Luna, fire at will!<br /><br />
-        Kai Luna: Aye sir. Core diversion in progress, cannon ready. Firing now.
+        <div class="nametag">Kai Luna</div>
+        You bitch! Sánchez, are you okay?<br /><br />
+        <div class="nametag">Captain Benítez</div>
+        Sánchez, do you copy? <br /><br />
+        <div class="nametag">Sánchez</div>
+        Lost an arm, sir. Damn.<br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        No hits, no damage? What is this shitty operation, Captain?<br /><br />
+        <div class="nametag">Kai Luna</div>
+        We don't know the weaknesses, sir. I defended the column, but they would
+        easily reprimand me for mediocrity.<br /><br />
+        <div class="nametag">Lieutenant</div>
+        Plasma beam! Luna, fire at will!<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Aye sir. Core diversion in progress, cannon ready. Firing now.
       </div>
       <div class="medium"></div>
       <div class="medium"></div>
@@ -948,21 +1007,29 @@
       </div>
       <div class="medium"></div>
       <div class="medium-long text">
-        Sánchez: Man down. Man down.<br /><br />
-        Kai Luna: Captain! Captain! <br /><br />
-        Lieutenant (from orbiting base): He's gone. Readings are gone.
-        <br /><br />
-        Sánchez: He probably died without realizing... <br /><br />
-        Sánchez: Well. According to the regular procedure, you're in charge now.
-        Luna's the mission captain.<br /><br />
-        Kai Luna: Shit. Shit. Shit. Ok, let's calm the shit out. Ranged attacks
-        aren't cutting it. Retreat, Lieutenant?<br /><br />
-        Sánchez: Hold on. It hasn't attacked us directly yet. No ranged offense.
-        I'm going melee.<br /><br />
-        Kai Luna: Sánchez! Benítez is dead! Why play the hero? Are you trying to
-        prove something?<br /><br />
-        Lieutenant (from orbiting base): Maybe it could work. PIZARRO unit,
-        hand-to-hand combat instance authorized.
+        <div class="nametag">Sánchez</div>
+        Man down. Man down.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Captain! Captain! <br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        He's gone. Readings are gone. <br /><br />
+        <div class="nametag">Sánchez</div>
+        He probably died without realizing... <br /><br />
+        <div class="nametag">Sánchez</div>
+        Well. According to the regular procedure, you're in charge now. Luna's
+        the mission captain.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Shit. Shit. Shit. Ok, let's calm the shit out. Ranged attacks aren't
+        cutting it. Retreat, Lieutenant?<br /><br />
+        <div class="nametag">Sánchez</div>
+        Hold on. It hasn't attacked us directly yet. No ranged offense. I'm
+        going melee.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Sánchez! Benítez is dead! Why play the hero? Are you trying to prove
+        something?<br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        Maybe it could work. PIZARRO unit, hand-to-hand combat instance
+        authorized.
       </div>
       <div class="medium"></div>
       <div class="medium"></div>
@@ -972,9 +1039,9 @@
         <button id="randomizeFont" style="width: 100%">
           <i class="fa fa-download"></i> DOWNLOAD
         </button>
-        <button id="resetFont" style="width: 100%">
+        <!-- <button id="resetFont" style="width: 100%">
           <i class="fa fa-download"></i> DOWNLOAD
-        </button>
+        </button> -->
       </div>
       <div class="medium"></div>
     </div>
@@ -991,13 +1058,15 @@
       <div class="medium"></div>
       <div class="medium"></div>
       <div class="large text">
-        Sánchez: Core's energy to the limbs. Did I ever tell you about my
-        thirty-meter katanas, Luna? I mean, Captain. Ehem. Ready to engage!
-        <br /><br />
-        Lieutenant (from orbiting base): The team here is reorienting
-        operational armor and activating auxiliary arms. You would've had four
-        if you had been more careful. You've got thirty seconds.<br /><br />
-        Kai Luna: Do what you have to, then get out! <br /><br />
+        <div class="nametag">Sánchez</div>
+        Core's energy to the limbs. Did I ever tell you about my thirty-meter
+        katanas, Luna? I mean, Captain. Ehem. Ready to engage! <br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        The team here is reorienting operational armor and activating auxiliary
+        arms. You would've had four if you had been more careful. You've got
+        thirty seconds.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Do what you have to, then get out! <br /><br />
         Then I changed my instance to fight in melee, dropping the plasma
         cannon, the submachine gun, and the missile pods, just in case I also
         needed to intervene.<br /><br />
@@ -1007,6 +1076,7 @@
         bending most fantastically, displaying iridescent colors, showing
         electric blue membranes full of bright eggs, and reconfiguring its shape
         behind Sánchez's back. He was tired and losing focus. <br /><br />
+        <div class="nametag"></div>
         Kai Luna: Combat speed activated!<br /><br />
         I went after him, and drew my fire staff. A rubidium weapon capable of
         causing enormous heat damage to any structure. As I got closer I was
@@ -1020,10 +1090,12 @@
         on his feet.
       </div>
       <div class="large text">
-        Kai Luna: You are leaving now! <br /><br />
+        <div class="nametag">Kai Luna</div>
+        You are leaving now! <br /><br />
         I yelled at Matías.<br /><br />
-        Lieutenant (from orbiting base): Yeah. Engage. Take him out of there.
-        Try to spare the machine and pull back. <br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        Yeah. Engage. Take him out of there. Try to spare the machine and pull
+        back. <br /><br />
         It was pure luck that I managed to break into the creature's defenses
         and hit it with the fire staff. The bug vibrated like a singing bowl,
         opening like a flower, spinning and preparing to fight me. It jumped
@@ -1033,13 +1105,15 @@
         discarding two or three shells, and becoming a quadruped. A slender,
         black creature with golden claws and hundreds of horns like the branches
         of a tree. The true form of a fluxus.<br /><br />
-        Lieutenant (from orbiting base): What are you doing, Sánchez?<br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        What are you doing, Sánchez?<br /><br />
         Sánchez: Saving my friend. And your precious mech. Changing modules one
         to five, discarding exterior shells. <br /><br />
-        Lieutenant (from orbiting base): That's not even tested in combat.
-        <br /><br />
-        Sánchez: Doesn't mean it won't work. This is the true form of a fluxus!
-        The black beast of the unconscious! Payback time, baby.<br /><br />
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        That's not even tested in combat. <br /><br />
+        <div class="nametag">Sánchez</div>
+        Doesn't mean it won't work. This is the true form of a fluxus! The black
+        beast of the unconscious! Payback time, baby.<br /><br />
         The PIZARRO unit charged at the kaiju, hitting it with its antlers. As
         he was thrown into the air, I aimed and turbocharged my right arm,
         throwing the staff at it, which chased it along the trajectory and
@@ -1063,11 +1137,14 @@
       <div class="small-long fixed-background"></div>
       <div class="small-long"></div>
       <div class="large text">
-        Kai Luna: Did we kill it?<br /><br />
-        Lieutenant (from satellite base): Do we have a positive?<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Did we kill it?<br /><br />
+        <div class="nametag">Lieutenant (from satellite base)</div>
+        Do we have a positive?<br /><br />
         There was no answer.<br /><br />
-        Sánchez: Grab my sword. Give it the final blow and we'll dance reggaeton
-        at Rubi's tonight. PapiAbalonenLaCalle, You know I love you, daddy. Come
+        <div class="nametag">Sánchez</div>
+        Grab my sword. Give it the final blow and we'll dance reggaeton at
+        Rubi's tonight. PapiAbalonenLaCalle, You know I love you, daddy. Come
         on, daddy, come on, daddy, come on.<br /><br />
         I activated the retribution mode, found one of Matías's swords in the
         distance and made it fly into my hand like Mjollnir. I took a couple of
@@ -1082,17 +1159,19 @@
         mine.
       </div>
       <div class="large text">
-        MAGELLAN AI: ALERT. ALERT. MAIN ENGINE COMPROMISED. IRREPARABLE DAMAGE.
-        IRREPARABLE DAMAGE.<br /><br />
-        Kai Luna: Fuck! The eject mechanism is jammed. I'm falling. Magellan is
+        <div class="nametag2">MAGELLAN AI</div>
+        ALERT. ALERT. MAIN ENGINE COMPROMISED. IRREPARABLE DAMAGE. IRREPARABLE
+        DAMAGE.<br /><br />
+        <div class="nametag">Kai Luna</div>
+        Fuck! The eject mechanism is jammed. I'm falling. Magellan is
         falling.<br /><br />
         I felt the robot's chaotic movement, losing stability. The MAGELLAN unit
         collapsed, crushing huge trees in its path. I held on to the controls.
         Then my head hit the edge of the command chair and I lost
         consciousness.<br /><br />
-        Lieutenant (from orbiting base): They've been hit. They've been hit! Are
-        you there? Do you copy? Are you still operational? Luna? Sánchez? Do you
-        copy? I repeat, do you copy?
+        <div class="nametag">Lieutenant (from orbiting base)</div>
+        They've been hit. They've been hit! Are you there? Do you copy? Are you
+        still operational? Luna? Sánchez? Do you copy? I repeat, do you copy?
       </div>
       <div class="small-long center-content">
         <textarea
@@ -2799,44 +2878,64 @@
         });
 
         const randomizeFontButton = document.getElementById("randomizeFont");
-        const resetFontButton = document.getElementById("resetFont");
 
-        randomizeFontButton.addEventListener("click", function () {
-          const textDivs = document.querySelectorAll(".text");
-          textDivs.forEach((div) => {
-            const text = div.innerText;
-            div.innerHTML = ""; // Clear the div
-            for (let char of text) {
-              const span = document.createElement("span");
-              span.innerText = char;
-              span.style.fontFamily =
-                Math.random() > 0.5 ? "Times New Roman" : "ABCDiatype";
-              div.appendChild(span);
-            }
-          });
-        });
+randomizeFontButton.addEventListener("click", function () {
+  const textDivs = document.querySelectorAll(".text");
+  textDivs.forEach((div) => {
+    const textNodes = Array.from(div.childNodes).filter(
+      (node) => node.nodeType === Node.TEXT_NODE || (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'SPAN')
+    );
+    textNodes.forEach((textNode) => {
+      let text = "";
+      if (textNode.nodeType === Node.TEXT_NODE) {
+        text = textNode.textContent;
+      } else if (textNode.nodeType === Node.ELEMENT_NODE && textNode.tagName === 'SPAN') {
+        text = textNode.textContent;
+      }
 
-        resetFontButton.addEventListener("click", function () {
-          const textDivs = document.querySelectorAll(".text");
-          textDivs.forEach((div) => {
-            const spans = div.querySelectorAll("span");
-            let allOriginal = true;
+      const styledText = Array.from(text).map((char) => {
+        const fontFamily = Math.random() > 0.5 ? "Times New Roman" : "ABCDiatype";
+        return `<span style="font-family: ${fontFamily}; display: inline; line-height: normal; padding: 0;">${char}</span>`;
+      }).join("");
 
-            spans.forEach((span) => {
-              if (span.style.fontFamily !== "ABCDiatype") {
-                allOriginal = false;
-              }
-            });
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = styledText;
+      const fragment = document.createDocumentFragment();
+      while (tempDiv.firstChild) {
+        fragment.appendChild(tempDiv.firstChild);
+      }
 
-            if (!allOriginal) {
-              let originalText = "";
-              spans.forEach((span) => {
-                originalText += span.innerText;
-              });
-              div.innerText = originalText; // Reset the div
-            }
-          });
-        });
+      if (textNode.nodeType === Node.TEXT_NODE) {
+        textNode.replaceWith(fragment);
+      } else if (textNode.nodeType === Node.ELEMENT_NODE && textNode.tagName === 'SPAN') {
+        textNode.parentNode.replaceChild(fragment, textNode);
+      }
+    });
+  });
+});
+
+
+
+
+
+
+        // const resetFontButton = document.getElementById("resetFont");
+
+        // resetFontButton.addEventListener("click", function () {
+        //   const textDivs = document.querySelectorAll(".text");
+        //   textDivs.forEach((div) => {
+        //     const spans = div.querySelectorAll("span");
+        //     if (spans.length > 0) {
+        //       let originalText = "";
+        //       spans.forEach((span) => {
+        //         originalText += span.innerText;
+        //       });
+        //       const textNode = document.createTextNode(originalText);
+        //       spans.forEach(span => span.remove());
+        //       div.appendChild(textNode);
+        //     }
+        //   });
+        // });
 
         const textareas = document.querySelectorAll(".animatedTextarea");
         let increasing = true;
