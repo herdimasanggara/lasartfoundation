@@ -76,13 +76,15 @@
       .navbar .nav-links a {
         color: white;
         text-decoration: none;
-        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
         font-size: 16px;
       }
 
       .navbar .nav-links a:hover {
         background-color: orange;
-        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
         border-radius: 10px;
         color: black;
       }
@@ -99,16 +101,14 @@
       }
 
       .nametag {
-  display: inline-block;
-  background-color: orange;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 10px;
-  line-height: normal; /* Ensure normal line height */
-  vertical-align: middle; /* Aligns the nametag with the text */
-}
-
-
+        display: inline-block;
+        background-color: orange;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        line-height: normal; /* Ensure normal line height */
+        vertical-align: middle; /* Aligns the nametag with the text */
+      }
 
       .nametag2 {
         display: inline-block;
@@ -118,7 +118,7 @@
         padding-right: 10px;
         border-radius: 10px;
         line-height: normal; /* Ensure normal line height */
-  vertical-align: middle; /* Aligns the nametag with the text */
+        vertical-align: middle; /* Aligns the nametag with the text */
       }
 
       .text {
@@ -596,13 +596,143 @@
       #container14 > .row6 > div {
         width: 100%;
       }
+
+      .pureblack {
+        background-color: black;
+      }
+
+      .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+        height: 100%;
+        width: 100%;
+      }
+
+      #clickable-image {
+        max-width: 100%;
+        max-height: 100%;
+        cursor: pointer;
+        transition: filter 0.3s ease;
+      }
+
+      #clickable-image:hover {
+        filter: brightness(0.8);
+      }
+
+      .soundcontainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .controls {
+        text-align: center;
+      }
+
+      #playButton1,
+      #playButton2,
+      #playButton3 {
+        margin: 10px;
+        padding: 8px 20px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #playButton1 span,
+      #playButton2 span,
+      #playButton3 span {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        transform: scale(1);
+      }
+
+      #playButton1:hover,
+      #playButton2:hover,
+      #playButton3:hover {
+        background-color: #696969; /* Slightly darker shade */
+      }
+
+      #playButton1.pulsate,
+      #playButton2.pulsate,
+      #playButton3.pulsate {
+        animation: pulsate 0.5s ease-in-out infinite;
+      }
+
+      @keyframes pulsate {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(3);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .center-checkbox input[type="checkbox"] {
+        transform: scale(2); /* Makes the checkbox bigger */
+      }
+
+      .mobile-warning {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+        text-align: center;
+        z-index: 10000; /* Ensure it's on top */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem; /* Slightly larger font */
+        font-weight: bold; /* Bold text for emphasis */
+        animation: background-flash 1.5s infinite; /* Optional flashing effect */
+      }
+
+      @keyframes background-flash {
+        0% {
+          background-color: rgba(255, 0, 0, 0.8);
+        }
+        50% {
+          background-color: rgba(139, 0, 0, 0.8);
+        }
+        100% {
+          background-color: rgba(255, 0, 0, 0.8);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .mobile-warning {
+          display: flex; /* Show warning on screens 768px wide or less */
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- Mobile Warning -->
+
+    <div class="mobile-warning">
+      THIS AREA IS INACCESSIBLE ON MOBILE DEVICES. PLEASE ABORT MISSION AND
+      RETURN TO DESKTOP IMMEDIATELY.
+    </div>
+
     <!-- Navigation Bar -->
 
     <nav class="navbar">
-      <div class="logo">LOGO</div>
+      <!-- <div class="logo">LOGO</div> -->
       <div class="nav-links">
         <a href="#">HOME</a>
         <a href="#">PROGRAMME</a>
@@ -610,9 +740,9 @@
         <a href="#">EXPLORE</a>
         <a href="#">ABOUT</a>
       </div>
-      <div class="search-container">
+      <!-- <div class="search-container">
         <input type="text" placeholder="Search..." />
-      </div>
+      </div> -->
     </nav>
 
     <!-- Container 01 -->
@@ -735,7 +865,13 @@
       <div class="medium-long rotating-target"></div>
       <div class="medium"></div>
       <div class="medium"></div>
-      <div class="medium"></div>
+      <div class="medium">
+        <div class="soundcontainer">
+          <div class="controls">
+            <button id="playButton1"><span>RESONATE</span></button>
+          </div>
+        </div>
+      </div>
       <div class="medium"></div>
       <div class="medium"></div>
       <div class="medium"></div>
@@ -805,8 +941,12 @@
       <div class="medium"></div>
       <div class="medium"></div>
       <div class="medium text">Do not think. Take action.</div>
-      <div class="medium"></div>
-      <div class="medium"></div>
+      <div class="medium center-checkbox">
+        <input type="checkbox" id="invertCheckbox" />
+      </div>
+      <div class="medium center-checkbox">
+        <input type="checkbox" id="invertCheckbox" />
+      </div>
       <div class="medium"></div>
       <div class="medium"></div>
       <div class="medium fixed-background2"></div>
@@ -913,7 +1053,13 @@
     <!-- Container 09 -->
 
     <div class="container">
-      <div class="medium-long"></div>
+      <div class="medium-long">
+        <div class="soundcontainer">
+          <div class="controls">
+            <button id="playButton2"><span>RESONATE</span></button>
+          </div>
+        </div>
+      </div>
       <div class="medium-long rotating-target"></div>
       <div class="medium">
         <div class="circle-container">
@@ -1032,7 +1178,9 @@
         authorized.
       </div>
       <div class="medium"></div>
-      <div class="medium"></div>
+      <div class="medium center-checkbox">
+        <input type="checkbox" id="invertCheckbox" />
+      </div>
       <div class="medium"></div>
       <div class="medium"></div>
       <div class="medium center-buttons">
@@ -1135,7 +1283,13 @@
         <input type="checkbox" id="invertCheckbox" />
       </div>
       <div class="small-long fixed-background"></div>
-      <div class="small-long"></div>
+      <div class="small-long">
+        <div class="soundcontainer">
+          <div class="controls">
+            <button id="playButton3"><span>RESONATE</span></button>
+          </div>
+        </div>
+      </div>
       <div class="large text">
         <div class="nametag">Kai Luna</div>
         Did we kill it?<br /><br />
@@ -1228,7 +1382,7 @@
           ></iframe>
           <canvas id="scribbleCanvas"></canvas>
           <button id="toggleButton">ENABLE</button>
-          <button id="invertButton">REVEAL</button>
+          <!-- <button id="invertButton">REVEAL</button> -->
         </div>
       </div>
     </div>
@@ -2239,6 +2393,40 @@
       </div>
     </div>
 
+    <!-- Container 15 -->
+
+    <div class="container">
+      <div class="very-large pureblack"></div>
+    </div>
+
+    <!-- Container 16 -->
+
+    <div class="container">
+      <div class="very-large pureblack"></div>
+    </div>
+
+    <!-- Container 17 -->
+
+    <div class="container">
+      <div class="very-large pureblack"></div>
+    </div>
+
+    <!-- Container 18 -->
+
+    <div class="container">
+      <div class="very-large pureblack"></div>
+    </div>
+
+    <!-- Container 19 -->
+
+    <div class="container">
+      <div class="very-large pureblack">
+        <div class="image-container">
+          <img id="clickable-image" src="image1.png" />
+        </div>
+      </div>
+    </div>
+
     <!-- THE REST -->
 
     <!-- <div class="container">
@@ -2445,6 +2633,73 @@
       </div>
     </div> -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.38/Tone.min.js"></script>
+    <script>
+      let players = [];
+      let shifter;
+
+      function setup() {
+        noCanvas();
+
+        // Setup Tone.js components
+        shifter = new Tone.PitchShift().toDestination();
+        shifter.wet.value = 1.0; // Set wetMix to 100%
+        shifter.pitch = 18; // Set shiftSlider to 80% of its range (-24 to 24), which is around 19.2
+        shifter.windowSize = 0.4; // Set windowSlider to 10%
+
+        // Create an array of player objects for each sound file
+        const soundFiles = [
+          "alienvoice1.mp3",
+          "alienvoice2.mp3",
+          "alienvoice3.mp3",
+        ];
+        soundFiles.forEach((file, index) => {
+          let player = new Tone.Player(file, () => {
+            console.log(`Sound ${index + 1} loaded`);
+          }).connect(shifter);
+          player.loop = true;
+          player.playbackRate = 1.65; // Set rateSlider to 75% of its range (0.1 to 2), which is around 1.525
+          players.push(player);
+        });
+
+        // Get elements
+        const playButtons = [
+          document.getElementById("playButton1"),
+          document.getElementById("playButton2"),
+          document.getElementById("playButton3"),
+        ];
+
+        // Setup event listeners for each button
+        playButtons.forEach((button, index) => {
+          button.addEventListener("click", async () => {
+            await Tone.start(); // Ensure AudioContext is started
+            if (players[index].state === "started") {
+              players[index].stop();
+              button.querySelector("span").innerText = "RESONATE";
+              button.classList.remove("pulsate"); // Remove pulsate when stopping
+            } else {
+              // Stop any other playing players
+              players.forEach((player, i) => {
+                if (i !== index && player.state === "started") {
+                  player.stop();
+                  playButtons[i].querySelector("span").innerText = "RESONATE";
+                  playButtons[i].classList.remove("pulsate");
+                }
+              });
+
+              players[index].start();
+              button.querySelector("span").innerText = "DAMPEN";
+              button.classList.add("pulsate"); // Add pulsate when playing
+            }
+          });
+        });
+      }
+
+      // Initialize setup
+      window.onload = setup;
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const navbar = document.querySelector(".navbar");
@@ -2472,6 +2727,44 @@
           observerOptions
         );
         observer.observe(canvasContainer);
+      });
+    </script>
+
+    <script>
+      const images = [
+        "image1.png",
+        "image2.png",
+        "image3.png",
+        "image4.png",
+        "image5.png",
+        "image6.png",
+        "image7.png",
+        "image8.png",
+      ];
+
+      let currentIndex = 0;
+
+      const imageElement = document.getElementById("clickable-image");
+
+      // Function to download the PDF
+      function downloadPDF() {
+        const pdfPath = "myfile.pdf"; // Replace with the actual path to your PDF
+        const link = document.createElement("a");
+        link.href = pdfPath;
+        link.download = "DownloadedFile.pdf"; // This will be the name of the downloaded file
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      imageElement.addEventListener("click", function () {
+        if (currentIndex < images.length - 1) {
+          currentIndex++;
+          imageElement.src = images[currentIndex];
+        } else {
+          // If it's the last image, download the PDF
+          downloadPDF();
+        }
       });
     </script>
 
@@ -2868,56 +3161,71 @@
           });
         }
 
-        const invertCheckbox = document.getElementById("invertCheckbox");
-        invertCheckbox.addEventListener("change", function () {
-          if (invertCheckbox.checked) {
-            document.body.style.filter = "invert(1)";
-          } else {
-            document.body.style.filter = "invert(0)";
-          }
+        const invertCheckboxes = document.querySelectorAll("#invertCheckbox");
+
+        invertCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+              document.body.style.filter = "invert(1)";
+              // Uncheck all other checkboxes
+              invertCheckboxes.forEach((otherCheckbox) => {
+                if (otherCheckbox !== checkbox) {
+                  otherCheckbox.checked = false;
+                }
+              });
+            } else {
+              document.body.style.filter = "invert(0)";
+            }
+          });
         });
 
         const randomizeFontButton = document.getElementById("randomizeFont");
 
-randomizeFontButton.addEventListener("click", function () {
-  const textDivs = document.querySelectorAll(".text");
-  textDivs.forEach((div) => {
-    const textNodes = Array.from(div.childNodes).filter(
-      (node) => node.nodeType === Node.TEXT_NODE || (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'SPAN')
-    );
-    textNodes.forEach((textNode) => {
-      let text = "";
-      if (textNode.nodeType === Node.TEXT_NODE) {
-        text = textNode.textContent;
-      } else if (textNode.nodeType === Node.ELEMENT_NODE && textNode.tagName === 'SPAN') {
-        text = textNode.textContent;
-      }
+        randomizeFontButton.addEventListener("click", function () {
+          const textDivs = document.querySelectorAll(".text");
+          textDivs.forEach((div) => {
+            const textNodes = Array.from(div.childNodes).filter(
+              (node) =>
+                node.nodeType === Node.TEXT_NODE ||
+                (node.nodeType === Node.ELEMENT_NODE && node.tagName === "SPAN")
+            );
+            textNodes.forEach((textNode) => {
+              let text = "";
+              if (textNode.nodeType === Node.TEXT_NODE) {
+                text = textNode.textContent;
+              } else if (
+                textNode.nodeType === Node.ELEMENT_NODE &&
+                textNode.tagName === "SPAN"
+              ) {
+                text = textNode.textContent;
+              }
 
-      const styledText = Array.from(text).map((char) => {
-        const fontFamily = Math.random() > 0.5 ? "Times New Roman" : "ABCDiatype";
-        return `<span style="font-family: ${fontFamily}; display: inline; line-height: normal; padding: 0;">${char}</span>`;
-      }).join("");
+              const styledText = Array.from(text)
+                .map((char) => {
+                  const fontFamily =
+                    Math.random() > 0.5 ? "Times New Roman" : "ABCDiatype";
+                  return `<span style="font-family: ${fontFamily}; display: inline; line-height: normal; padding: 0;">${char}</span>`;
+                })
+                .join("");
 
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = styledText;
-      const fragment = document.createDocumentFragment();
-      while (tempDiv.firstChild) {
-        fragment.appendChild(tempDiv.firstChild);
-      }
+              const tempDiv = document.createElement("div");
+              tempDiv.innerHTML = styledText;
+              const fragment = document.createDocumentFragment();
+              while (tempDiv.firstChild) {
+                fragment.appendChild(tempDiv.firstChild);
+              }
 
-      if (textNode.nodeType === Node.TEXT_NODE) {
-        textNode.replaceWith(fragment);
-      } else if (textNode.nodeType === Node.ELEMENT_NODE && textNode.tagName === 'SPAN') {
-        textNode.parentNode.replaceChild(fragment, textNode);
-      }
-    });
-  });
-});
-
-
-
-
-
+              if (textNode.nodeType === Node.TEXT_NODE) {
+                textNode.replaceWith(fragment);
+              } else if (
+                textNode.nodeType === Node.ELEMENT_NODE &&
+                textNode.tagName === "SPAN"
+              ) {
+                textNode.parentNode.replaceChild(fragment, textNode);
+              }
+            });
+          });
+        });
 
         // const resetFontButton = document.getElementById("resetFont");
 
