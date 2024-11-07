@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
     <title>LAS Art Foundation</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <style>
       @font-face {
         font-family: "ABCDiatype";
@@ -42,7 +38,7 @@
 
       body,
       html {
-        cursor: none; /* Hide the default cursor */
+        cursor: none;
         margin: 0;
         padding: 0;
         height: 100%;
@@ -58,7 +54,7 @@
         background-size: contain;
         pointer-events: none;
         z-index: 1000;
-        animation: pulsateCursor 1.2s infinite;
+        animation: pulsateCursor 0.01s infinite;
         transform: translate(0, 0);
         mix-blend-mode: difference;
       }
@@ -67,35 +63,14 @@
         0% {
           transform: translate(0px, 0px) scale(1);
         }
-        10% {
-          transform: translate(0px, 0px) scale(4.5);
-        }
         14% {
           transform: translate(0px, 0px) scale(1.2);
         }
-        15% {
-          transform: translate(0px, 0px) scale(3.3);
-        }
         35% {
-          transform: translate(0px, 0px) scale(1.8);
-        }
-        36% {
-          transform: translate(0px, 0px) scale(5);
-        }
-        54% {
-          transform: translate(0px, 0px) scale(2.9);
-        }
-        55% {
-          transform: translate(0px, 0px) scale(4.3);
-        }
-        70% {
-          transform: translate(0px, 0px) scale(2.5);
-        }
-        71% {
           transform: translate(0px, 0px) scale(1.4);
         }
-        85% {
-          transform: translate(0px, 0px) scale(3.7);
+        54% {
+          transform: translate(0px, 0px) scale(1);
         }
         100% {
           transform: translate(0px, 0px) scale(1);
@@ -519,7 +494,7 @@
         cursor: pointer;
         font-size: 20px;
         display: inline-block;
-        animation: pulsateStretch 1.5s ease-in-out infinite;
+        animation: pulsateStretch 0.5s ease-in-out infinite;
       }
 
       #randomizeFont:hover {
@@ -838,7 +813,46 @@
 
       @media screen and (max-width: 768px) {
         .mobile-warning {
-          display: flex; 
+          display: flex;
+        }
+      }
+
+      .critical-warning {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        background-color: rgba(255, 0, 0, 0.9);
+        font-size: 1rem;
+        font-weight: bold;
+        z-index: 10001;
+        text-align: center;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        opacity: 0;
+        animation: warning-flash 2s infinite;
+      }
+
+      @keyframes warning-flash {
+        0%,
+        80% {
+          opacity: 0;
+        }
+        85%,
+        95% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .critical-warning {
+          justify-content: center;
+          align-items: center;
         }
       }
     </style>
@@ -846,11 +860,14 @@
   <body>
     <div class="custom-cursor" id="customCursor"></div>
 
-    <!-- Mobile Warning -->
-
     <div class="mobile-warning">
       THIS AREA IS INACCESSIBLE ON MOBILE DEVICES. PLEASE ABORT MISSION AND
       RETURN TO DESKTOP IMMEDIATELY.
+    </div>
+
+    <div class="critical-warning" id="warning1">
+      YOUR COMPUTER IS ON THE EDGE OF A CRITICAL MALFUNCTION. HEAT LEVELS
+      ESCALATING BEYOND SAFE LIMITS!
     </div>
 
     <!-- Navigation Bar -->
@@ -888,7 +905,7 @@
     <!-- Container 01 -->
 
     <div class="very-large canvas-container2" id="canvasContainer2">
-      <img class="layer" id="layer6" src="imageF.png" />
+      <img class="layer" id="layer6" src="imageF.webp" />
       <canvas class="layer" id="canvas3"></canvas>
     </div>
 
@@ -932,7 +949,7 @@
 
     <div class="container">
       <div class="large canvas-container">
-        <img class="layer" id="layer2" src="imageB.png" />
+        <img class="layer" id="layer2" src="imageB.webp" />
         <canvas class="layer" id="canvas"></canvas>
       </div>
       <div class="large text">
@@ -994,7 +1011,7 @@
         technologies that can transcend conventional understanding and control.
       </div>
       <div class="large canvas-container">
-        <img class="layer" id="layer4" src="imageD.png" />
+        <img class="layer" id="layer4" src="imageD.webp" />
         <canvas class="layer" id="canvas2"></canvas>
       </div>
     </div>
@@ -1075,7 +1092,7 @@
         Our mission: to recover the Nexial Gate. Nothing less.
       </div>
       <div class="medium-long canvas-container">
-        <img class="layer" id="layer10" src="imageJ.png" />
+        <img class="layer" id="layer10" src="imageJ.webp" />
         <canvas class="layer" id="canvas5"></canvas>
       </div>
       <div class="medium"></div>
@@ -1377,7 +1394,7 @@
       <div class="medium"></div>
       <div class="medium"></div>
       <div class="medium-long canvas-container">
-        <img class="layer" id="layer8" src="imageH.png" />
+        <img class="layer" id="layer8" src="imageH.webp" />
         <canvas class="layer" id="canvas4"></canvas>
       </div>
       <div class="large text">
@@ -2578,19 +2595,25 @@
     <!-- Container 16 -->
 
     <div class="container">
-      <div class="very-large pureblack">You're still there, aren't you? Say something if you are.</div>
+      <div class="very-large pureblack">
+        You're still there, aren't you? Say something if you are.
+      </div>
     </div>
 
     <!-- Container 17 -->
 
     <div class="container">
-      <div class="very-large pureblack">I can feel you slipping... are you still with me?</div>
+      <div class="very-large pureblack">
+        I can feel you slipping... are you still with me?
+      </div>
     </div>
 
     <!-- Container 18 -->
 
     <div class="container">
-      <div class="very-large pureblack">Tell me you're here. It's getting quiet...</div>
+      <div class="very-large pureblack">
+        Tell me you're here. It's getting quiet...
+      </div>
     </div>
 
     <!-- Container 19 -->
@@ -2704,20 +2727,19 @@
 
     <script>
       const images = [
-        "image1.png",
-        "image2.png",
-        "image3.png",
-        "image4.png",
-        "image5.png",
-        "image6.png",
-        "image7.png",
-        "image8.png",
+        "image1.webp",
+        "image2.webp",
+        "image3.webp",
+        "image4.webp",
+        "image5.webp",
+        "image6.webp",
+        "image7.webp",
+        "image8.webp",
       ];
 
       let currentIndex = 0;
 
       const imageElement = document.getElementById("clickable-image");
-
 
       function downloadPDF() {
         const pdfPath = "myfile.pdf";
@@ -2786,7 +2808,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext("2d");
-        const layer1Src = "imageA.png";
+        const layer1Src = "imageA.webp";
 
         const img1 = new Image();
         img1.src = layer1Src;
@@ -2798,7 +2820,7 @@
 
         const canvas2 = document.getElementById("canvas2");
         const ctx2 = canvas2.getContext("2d");
-        const layer3Src = "imageC.png";
+        const layer3Src = "imageC.webp";
 
         const img3 = new Image();
         img3.src = layer3Src;
@@ -2810,7 +2832,7 @@
 
         const canvas3 = document.getElementById("canvas3");
         const ctx3 = canvas3.getContext("2d");
-        const layer5Src = "imageE.png";
+        const layer5Src = "imageE.webp";
 
         const img5 = new Image();
         img5.src = layer5Src;
@@ -2822,7 +2844,7 @@
 
         const canvas4 = document.getElementById("canvas4");
         const ctx4 = canvas4.getContext("2d");
-        const layer7Src = "imageG.png";
+        const layer7Src = "imageG.webp";
 
         const img7 = new Image();
         img7.src = layer7Src;
@@ -2834,7 +2856,7 @@
 
         const canvas5 = document.getElementById("canvas5");
         const ctx5 = canvas5.getContext("2d");
-        const layer9Src = "imageI.png";
+        const layer9Src = "imageI.webp";
 
         const img9 = new Image();
         img9.src = layer9Src;
@@ -3048,7 +3070,8 @@
           innerRotatingContainer.appendChild(innerRotatingScrollbar);
 
           let direction = 1;
-          setInterval(() => {
+
+          function scrollContent() {
             if (
               innerRotatingScrollbar.scrollLeft >=
               innerRotatingContent.offsetWidth -
@@ -3059,8 +3082,11 @@
               direction = 1;
             }
             innerRotatingScrollbar.scrollLeft += direction * 5;
-          }, 30);
 
+            requestAnimationFrame(scrollContent);
+          }
+
+          requestAnimationFrame(scrollContent);
           rotatingContainer.appendChild(innerRotatingContainer);
           return innerRotatingContainer;
         }
@@ -3078,7 +3104,8 @@
           rotatingContainer.appendChild(rotatingScrollbar);
 
           let direction = 1;
-          setInterval(() => {
+
+          function scrollContent() {
             if (
               rotatingScrollbar.scrollLeft >=
               rotatingContent.offsetWidth - rotatingScrollbar.offsetWidth
@@ -3088,7 +3115,11 @@
               direction = 1;
             }
             rotatingScrollbar.scrollLeft += direction * 5;
-          }, 30);
+
+            requestAnimationFrame(scrollContent);
+          }
+
+          requestAnimationFrame(scrollContent);
 
           const innerRotatingContainer30 = createRotatingScrollbar(
             30,
