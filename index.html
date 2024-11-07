@@ -780,23 +780,53 @@
         transform: scale(2);
       }
 
-      .mobile-warning {
+      .mobile-warning,
+      .critical-warning {
         display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.9);
-        color: white;
-        text-align: center;
-        z-index: 10000;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.8rem;
-        font-weight: bold;
-        animation: background-flash 1.5s infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        .mobile-warning {
+          display: flex;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: calc(100vw - 2rem);
+          height: 100vh;
+          background-color: rgba(255, 0, 0, 0.8);
+          color: white;
+          text-align: center;
+          z-index: 10000;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.4rem;
+          font-weight: bold;
+          animation: background-flash 1.5s infinite;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .critical-warning {
+          display: flex;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          background-color: rgba(255, 0, 0, 0.8);
+          font-size: 2vw;
+          font-weight: bold;
+          z-index: 10001;
+          text-align: center;
+          padding: 1rem 2rem;
+          border-radius: 10px;
+          animation: warning-flash 2s infinite;
+          justify-content: center;
+          align-items: center;
+        }
       }
 
       @keyframes background-flash {
@@ -811,30 +841,6 @@
         }
       }
 
-      @media screen and (max-width: 768px) {
-        .mobile-warning {
-          display: flex;
-        }
-      }
-
-      .critical-warning {
-        display: flex;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        background-color: rgba(255, 0, 0, 0.9);
-        font-size: 1rem;
-        font-weight: bold;
-        z-index: 10001;
-        text-align: center;
-        padding: 1rem 2rem;
-        border-radius: 10px;
-        opacity: 0;
-        animation: warning-flash 2s infinite;
-      }
-
       @keyframes warning-flash {
         0%,
         80% {
@@ -846,13 +852,6 @@
         }
         100% {
           opacity: 0;
-        }
-      }
-
-      @media screen and (min-width: 768px) {
-        .critical-warning {
-          justify-content: center;
-          align-items: center;
         }
       }
     </style>
